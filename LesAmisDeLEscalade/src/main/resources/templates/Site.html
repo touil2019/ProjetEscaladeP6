@@ -23,7 +23,7 @@
 </head>
 <body>
 <div class="container">
-	<h3>Test</h3>
+	<h3>ListeSite</h3>
 	<table class="table"> 
 	<thead>
 	<tr>
@@ -44,6 +44,29 @@
 	</tr>
 	</tbody>
 	</table>
-	</div>	
+	</div>
+<div class="container">
+	<h3>ListeVoie</h3>
+	<table class="table"> 
+	<thead>
+	<tr>
+		<th>ID</th>
+		<th>nom</th>
+		<th>cotation</th>
+		<th>hauteur</th>
+		<th>supprimer</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="lv:${listVoie}">
+		<td th:text="${lv.id}"></td>
+		<td th:text="${lv.nom}"></td>
+		<td th:text="${lv.cotation}"></td>
+		<td th:text="${lv.hauteur}"></td>
+		<td> <a class="btn btn-primary" th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
+	</tr>
+	</tbody>
+	</table>
+	</div>		
 </body>
 </html>

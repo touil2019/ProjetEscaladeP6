@@ -2,12 +2,14 @@ package com.LesAmisDeLEscalade.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 @Entity
 public class Site implements Serializable {
 @Id @GeneratedValue
+@Column(name="ID_SITE")
 	private Long id;
 	private String nom;
 	private String departement;

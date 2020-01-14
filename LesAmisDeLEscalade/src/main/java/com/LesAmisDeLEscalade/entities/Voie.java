@@ -2,12 +2,14 @@ package com.LesAmisDeLEscalade.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 @Entity
 public class Voie implements Serializable{
 @Id @GeneratedValue
+@Column(name="ID_VOIE")
 	private Long id;
 	private String cotation;
 	private int hauteur;
