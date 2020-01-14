@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 @Entity
-public class Users implements Serializable{
+public class User implements Serializable{
 @Id @GeneratedValue
 	private Long id;
 	private String pseudo;
@@ -15,11 +15,11 @@ public class Users implements Serializable{
 	private String voie;
 	private String complementlocalisation;
 	private String localite;
-	public Users() {
+	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Users(String pseudo, String nomdestinataire, int numadherent, String voie, String complementlocalisation,
+	public User(String pseudo, String nomdestinataire, int numadherent, String voie, String complementlocalisation,
 			String localite) {
 		super();
 		this.pseudo = pseudo;
