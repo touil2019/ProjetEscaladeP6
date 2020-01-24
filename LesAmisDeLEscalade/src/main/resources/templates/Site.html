@@ -23,6 +23,13 @@
 </head>
 <body>
 <div class="container">
+<form action="@{site}"method="get">
+<label>Mot clé:</label>
+<input type="text" name="motCle" value=""/>
+<button class="btn btn-primary">Chercher</button>
+</form>
+</div>
+<div class="container">
 	<h3>ListeSite</h3>
 	<table class="table"> 
 	<thead>
@@ -40,7 +47,7 @@
 		<td th:text="${ls.nom}"></td>
 		<td th:text="${ls.departement}"></td>
 		<td th:text="${ls.ville}"></td>
-		<td> <a class="btn btn-primary" th:href="@{/site/{id}/supprimer(id=${ls.id})}">supprimer</a></td>
+		<td> <a class="btn btn-primary" onclick="return confirm('Etes vous sûre?')" th:href="@{/site/{id}/supprimer(id=${ls.id})}">supprimer</a></td>
 	</tr>
 	</tbody>
 	</table>
@@ -63,10 +70,17 @@
 		<td th:text="${lv.nom}"></td>
 		<td th:text="${lv.cotation}"></td>
 		<td th:text="${lv.hauteur}"></td>
-		<td> <a class="btn btn-primary" th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
+		<td> <a class="btn btn-primary" onclick="return confirm('Etes vous sûre?')" th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
 	</tr>
 	</tbody>
 	</table>
+		<div>
+		<ul class="nav nav-pills">
+		<li th:class="{${pageCourante}==${status.site}?'active':''" th:each="pa,status:${pages}">
+		<a th:href="@{site(page=${status.site},size=${size})}" th:text="${status.site}"></a>
+		</li>
+		</ul>
+		</div>
 	</div>		
 </body>
 </html>
