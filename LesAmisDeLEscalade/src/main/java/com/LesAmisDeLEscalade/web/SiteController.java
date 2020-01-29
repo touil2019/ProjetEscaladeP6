@@ -32,12 +32,18 @@ public class SiteController {
 	private VoieRepository voieRepository;
 
 	@RequestMapping(value="/site")
-	public String site(Model model) {
-		List<Site> listSite=siteRepository.findAll();
+	public String site(Model model,@RequestParam(name="page",defaultValue="0")int p,	  
+			@RequestParam(name="size",defaultValue="2")int s) {
+		
+		Page<Site> listSite=siteRepository.findAll(PageRequest.of(p, s));
 		model.addAttribute("listSite", listSite);
 		List<Voie> listVoie=voieRepository.findAll();
-		model.addAttribute("listVoie", listVoie);	
-
+		model.addAttribute("listVoie", listVoie);
+		
+		int[]pages=new int[listSite.getTotalPages()];
+		model.addAttribute("pages",pages);
+		model.addAttribute("size",s);
+		model.addAttribute("pageCourante",p);
 		return "site";		
 	}
 
@@ -72,22 +78,31 @@ public class SiteController {
 	}
 
 
-	@RequestMapping(value="/site") 
-	public String site(Model model,@RequestParam(name="page",defaultValue="0")int p,	  
-			@RequestParam(name="size",defaultValue="3")int s, @RequestParam(name="motCle",defaultValue="")String mc) {
+	@GetMapping(value="/site/trouver") 
+	public String trouverSite(Model model,
+			
+			@RequestParam(name="page",defaultValue="0")int p,	  
+			@RequestParam(name="size",defaultValue="2")int s,
+			@RequestParam(name="motCle",defaultValue="")String mc) {
+		if(!mc.isBlank()) {
+			Page<Site> pageSites= siteRepository.chercher("%"+mc+"%",PageRequest.of(p,s));
 
-		Page<Site> pageSites= siteRepository.chercher(mc,PageRequest.of(p,s));
+			model.addAttribute("listSite",pageSites.getContent());
+			int[]pages=new int[pageSites.getTotalPages()];
+					model.addAttribute("pages",pages);
+					model.addAttribute("size",s);
+					model.addAttribute("pageCourante",p);
+					model.addAttribute("motCle",mc);
+					List<Voie> listVoie=voieRepository.findAll();
+					model.addAttribute("listVoie", listVoie);
+			return"site";
+		}
+		
+		else return"redirect:/site";
 
-		model.addAttribute("listSite",pageSites.getContent());
-		int[]pages=new
-				int[pageSites.getTotalPages()]; model.addAttribute("pages",pages);
-				model.addAttribute("size",s); model.addAttribute("pageCourante",p);
-				model.addAttribute("motCle",mc);
+				 
 
-
-				return"site"; 
-
-	}
+	 } 
 
 
 

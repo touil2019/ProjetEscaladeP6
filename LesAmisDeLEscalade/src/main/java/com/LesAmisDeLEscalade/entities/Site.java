@@ -74,15 +74,12 @@ public class Site implements Serializable {
 	}
 
 
-
-	public Users getUsers() {
-		return users;
-	}
-
-
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}
+	/*
+	 * public Users getUsers() { return users; }
+	 * 
+	 * 
+	 * 
+	 * public void setUsers(Users users) { this.users = users; }
+	 */
 	
 }

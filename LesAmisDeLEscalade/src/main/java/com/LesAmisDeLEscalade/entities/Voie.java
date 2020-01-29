@@ -14,6 +14,7 @@ public class Voie implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_VOIE")
 	private Long id;
+	private String secteur;
 	private String cotation;
 	private int hauteur;
 	private String nom;
@@ -21,8 +22,9 @@ public class Voie implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Voie(String cotation, int hauteur, String nom) {
+	public Voie(String secteur,String cotation, int hauteur, String nom) {
 		super();
+		this.secteur= secteur;
 		this.cotation = cotation;
 		this.hauteur = hauteur;
 		this.nom = nom;
@@ -44,6 +46,13 @@ public class Voie implements Serializable{
 	}
 	public void setHauteur(int hauteur) {
 		this.hauteur = hauteur;
+	}
+	
+	public String getSecteur() {
+		return secteur;
+	}
+	public void setSecteur(String secteur) {
+		this.secteur = secteur;
 	}
 	public String getNom() {
 		return nom;

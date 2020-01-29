@@ -38,12 +38,12 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 	siteRepository.save(new Site(null, "le pic rouge", "Mayotte", "Mamoudzou", null));
 		 
 
-	voieRepository.save(new Voie("4C",10,"Chemin Maripasoula"));
-	voieRepository.save(new Voie("6C",10,"Pic du col vert"));
-	voieRepository.save(new Voie("8C",10,"Passage du colibri"));
-	voieRepository.save(new Voie("9C",10,"Route des fleurs"));
-	voieRepository.save(new Voie("7C",9,"Chemin des Amaryllis"));
-	voieRepository.save(new Voie("5B",8,"Col de la Croix-haute"));
+	voieRepository.save(new Voie("secteur1","4C",10,"Chemin Maripasoula"));
+	voieRepository.save(new Voie("secteur2","6C",10,"Pic du col vert"));
+	voieRepository.save(new Voie("secteur3","8C",10,"Passage du colibri"));
+	voieRepository.save(new Voie("secteur1","9C",10,"Route des fleurs"));
+	voieRepository.save(new Voie("secteur2","7C",9,"Chemin des Amaryllis"));
+	voieRepository.save(new Voie("secteur3","5B",8,"Col de la Croix-haute"));
 	
 	longueurRepository.save(new Longueur("Passage Maripasoula",800,"4C"));
 	longueurRepository.save(new Longueur("Boucle sable blanc",200,"4B"));
