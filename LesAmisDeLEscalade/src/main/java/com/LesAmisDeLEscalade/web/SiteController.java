@@ -37,7 +37,8 @@ public class SiteController {
 	private LongueurRepository longueurRepository;
 
 	@RequestMapping(value = "/site")
-	public String site(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
+	public String site(Model model, 
+			@RequestParam(name = "page", defaultValue = "0") int p,
 			@RequestParam(name = "size", defaultValue = "2") int s) {
 
 		Page<Site> listSite = siteRepository.findAll(PageRequest.of(p, s));

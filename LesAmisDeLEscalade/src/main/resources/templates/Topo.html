@@ -23,34 +23,36 @@
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8" />
-<title>CreerLongueur</title>
+<title>Site</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-
-			<div class="panel panel-default">
-				<div class=" panel-heading">Créer une longueur</div>
-				<div class="panel-body">
-					<form th:action="@{/longueur/save}" method="post">
-						<div class="form-group">
-							<label class="control-label">Nom:</label> <input
-								class="form-control" type="text" name="nom" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Hauteur:</label> <input
-								class="form-control" type="text" name="hauteur" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Cotation:</label> <input
-								class="form-control" type="text" name="cotation" />
-						</div>
-						<div>
-							<button type="submit" class="btn btn-primary">Save</button>
-						</div>
-					</form>
-				</div>
-			</div>
+			<h3>ListeTopo</h3>
+			<a class="btn btn-primary" th:href="@{/topo/creer}">Formulaire</a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>nom</th>
+						<th>description</th>
+						<th>disponibilité</th>
+						<th>date</th>
+						<th>supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- <tr th:each="lt:${listTopo}">
+						 <td><a th:text="${lt.nom}"
+							th:href="@{/topo/{id}/infoTopo (id=${lt.id})}"></a></td>
+						<td th:text="${lt.description}"></td>
+						<td th:text="${lt.disponibilite}"></td>
+						<td th:text="${#dates.format(lt.date, 'dd-MM-yyyy HH:mm')}"></td>
+						<td><a class="btn btn-primary"
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/topo/{id}/infoTopo (id=${lt.id})}">supprimer</a></td>
+					</tr>-->
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>
