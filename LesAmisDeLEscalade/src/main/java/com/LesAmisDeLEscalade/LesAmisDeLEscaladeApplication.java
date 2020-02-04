@@ -78,7 +78,7 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		longueurRepository.save(new Longueur("Route du postier", 300, "5C"));
 		longueurRepository.save(new Longueur("Grand Fromagier", 500, "7B"));
 		longueurRepository.save(new Longueur("Chemin du col vert", 400, "1B"));
-		longueurRepository.save(new Longueur("Col du boi vaillant", 800, "2B"));
+		longueurRepository.save(new Longueur("Col du bois vaillant", 800, "2B"));
 		longueurRepository.save(new Longueur("Bois de Nèfles", 400, "6C"));
 		longueurRepository.save(new Longueur("Plage de l'éméraude", 900, "5C"));
 		longueurRepository.save(new Longueur("Falaise du diamant", 1200, "7B"));
