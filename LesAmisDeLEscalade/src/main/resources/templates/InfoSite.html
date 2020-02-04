@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+	crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<title>Site</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Information Site</h3>
+			</div>
+				<div class="card-body">
+				<label>Site:</label>
+				<label th:text="${site.nom}"></label>
+				<label>Département :</label>
+				<label th:text="${site.departement}"></label>
+				<label>Ville :</label>
+				<label th:text="${site.ville}"></label>
+				</div>
+		</div>
+		<div class="container">
+			<h3>
+				ListeVoie <a class="btn btn-primary" th:href="@{/voie/creer}">Ajouter
+					une voie </a>
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>nom</th>
+						<th>secteur</th>
+						<th>cotation</th>
+						<th>hauteur</th>
+						<th>supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="lv:${listVoie}">
+						<td th:text="${lv.id}"></td>
+						<td th:text="${lv.nom}"></td>
+						<td th:text="${lv.secteur}"></td>
+						<td th:text="${lv.cotation}"></td>
+						<td th:text="${lv.hauteur}"></td>
+						<td><a class="btn btn-primary"
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="container">
+			<h3>
+				ListeLongueur <a class="btn btn-primary"
+					th:href="@{/longueur/creer}">Ajouter une longueur </a>
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>nom</th>
+						<th>cotation</th>
+						<th>hauteur</th>
+						<th>supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ll:${listLongueur}">
+						<td th:text="${ll.id}"></td>
+						<td th:text="${ll.nom}"></td>
+						<td th:text="${ll.cotation}"></td>
+						<td th:text="${ll.hauteur}"></td>
+						<td><a class="btn btn-primary"
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/longueur/{id}/supprimer(id=${ll.id})}">supprimer</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</body>
+</html>

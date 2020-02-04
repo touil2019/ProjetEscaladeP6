@@ -3,11 +3,12 @@ package com.LesAmisDeLEscalade.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.LesAmisDeLEscalade.dao.TopoRepository;
+import com.LesAmisDeLEscalade.dao.CommentaireSpotRepository;
 
 @Controller
-public class Topo {
-
+public class CommentaireSpotController {
+	
 	@Autowired
-	private TopoRepository topoRepository;
+	public CommentaireSpotRepository commentairespotRepository;
+
 }

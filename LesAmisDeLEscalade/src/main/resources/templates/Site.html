@@ -1,90 +1,77 @@
 <!DOCTYPE html>
-<html xmlns:th="htpp://www.thymeleaf.org">
+<html xmlns:th="htpp://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
 <head>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-		  rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <link
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous" />
-    <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-            crossorigin="anonymous"></script>
-<meta charset="UTF-8"/>
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+	crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
 <title>Site</title>
 </head>
 <body>
-<div class="container">
-<form th:action="@{/site/trouver}">
-<label>Mot clé:</label>
-<input type="text" name="motCle"/>
-<button class="btn btn-primary">Chercher</button>
-</form>
-</div>
-<div class="container">
-	<h3>ListeSite</h3>
-	<table class="table"> 
-	<thead>
-	<tr>
-		<th>ID</th>
-		<th>nom</th>
-		<th>département</th>
-		<th>ville</th>
-		<th>supprimer</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr th:each="ls:${listSite}">
-		<td th:text="${ls.id}"></td>
-		<td th:text="${ls.nom}"></td>
-		<td th:text="${ls.departement}"></td>
-		<td th:text="${ls.ville}"></td>
-		<td> <a class="btn btn-primary" onclick="return confirm('Etes vous sûre?')" th:href="@{/site/{id}/supprimer(id=${ls.id})}">supprimer</a></td>
-	</tr>
-	</tbody>
-	</table>
-		<div>
-		<ul class="nav nav-pills pagination justify-content-center" >
-		<li th:class="(${pageCourante}==${status.index}?'page-item active':'page-item')" th:each="pa,status:${pages}">
-		<a class="page-link" th:href="@{/site(page=${status.index})}" th:text="${status.index}"></a>
-		</li>
-		</ul>
+	<div layout:fragment="content">
+
+		<div class="container">
+			<form th:action="@{/site/trouver}">
+				<label>Mot clé:</label> <input type="text" name="motCle" />
+				<button class="btn btn-primary">Chercher</button>
+			</form>
 		</div>
-	
+		<div class="container">
+			<h3>ListeSite</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>nom</th>
+						<th>département</th>
+						<th>ville</th>
+						<th>supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ls:${listSite}">
+						<td th:text="${ls.id}"></td>
+						<td >
+						<a th:text="${ls.nom}" th:href="@{/site/{id}/infoSite (id=${ls.id})}"></a>
+						</td>
+						<td th:text="${ls.departement}"></td>
+						<td th:text="${ls.ville}"></td>
+						<td><a class="btn btn-primary"
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/site/{id}/supprimer(id=${ls.id})}">supprimer</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<ul class="nav nav-pills pagination justify-content-center">
+					<li
+						th:class="(${pageCourante}==${status.index}?'page-item active':'page-item')"
+						th:each="pa,status:${pages}"><a class="page-link"
+						th:href="@{/site(page=${status.index})}" th:text="${status.index}"></a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
 	</div>
-<div class="container">
-	<h3>ListeVoie</h3>
-	<table class="table"> 
-	<thead>
-	<tr>
-		<th>ID</th>
-		<th>nom</th>
-		<th>secteur</th>
-		<th>cotation</th>
-		<th>hauteur</th>
-		<th>supprimer</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr th:each="lv:${listVoie}">
-		<td th:text="${lv.id}"></td>
-		<td th:text="${lv.nom}"></td>
-		<td th:text="${lv.secteur}"></td>
-		<td th:text="${lv.cotation}"></td>
-		<td th:text="${lv.hauteur}"></td>
-		<td> <a class="btn btn-primary" onclick="return confirm('Etes vous sûre?')" th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
-	</tr>
-	</tbody>
-	</table>
-		
-	</div>		
 </body>
 </html>

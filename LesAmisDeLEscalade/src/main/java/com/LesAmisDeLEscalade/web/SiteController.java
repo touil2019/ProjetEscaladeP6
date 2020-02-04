@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.LesAmisDeLEscalade.dao.LongueurRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
+import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Voie;
 
@@ -31,78 +33,99 @@ public class SiteController {
 	@Autowired
 	private VoieRepository voieRepository;
 
-	@RequestMapping(value="/site")
-	public String site(Model model,@RequestParam(name="page",defaultValue="0")int p,	  
-			@RequestParam(name="size",defaultValue="2")int s) {
-		
-		Page<Site> listSite=siteRepository.findAll(PageRequest.of(p, s));
+	@Autowired
+	private LongueurRepository longueurRepository;
+
+	@RequestMapping(value = "/site")
+	public String site(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
+			@RequestParam(name = "size", defaultValue = "2") int s) {
+
+		Page<Site> listSite = siteRepository.findAll(PageRequest.of(p, s));
 		model.addAttribute("listSite", listSite);
-		List<Voie> listVoie=voieRepository.findAll();
+		List<Voie> listVoie = voieRepository.findAll();
 		model.addAttribute("listVoie", listVoie);
-		
-		int[]pages=new int[listSite.getTotalPages()];
-		model.addAttribute("pages",pages);
-		model.addAttribute("size",s);
-		model.addAttribute("pageCourante",p);
-		return "site";		
+		List<Longueur> listLongueur = longueurRepository.findAll();
+		model.addAttribute("listLongueur", listLongueur);
+
+		int[] pages = new int[listSite.getTotalPages()];
+		model.addAttribute("pages", pages);
+		model.addAttribute("size", s);
+		model.addAttribute("pageCourante", p);
+		return "site";
 	}
 
-
-	@GetMapping(value="/site/{id}/supprimer")
-	public String supprimerSite(Model model , @PathVariable(value="id")Long id) {
+	@GetMapping(value = "/site/{id}/supprimer")
+	public String supprimerSite(Model model, @PathVariable(value = "id") Long id) {
 
 		siteRepository.deleteById(id);
 		return "redirect:/site";
 	}
 
-	@RequestMapping(value="/CreerSite",method=RequestMethod.GET)
-	public String creer(Model model) {
-		Site site=new Site();
+	@RequestMapping(value = "/site/creer", method = RequestMethod.GET)
+	public String creerSite(Model model) {
+		Site site = new Site();
 		model.addAttribute("site", site);
 		return "CreerSite";
 	}
 
-	@RequestMapping(value="/Save"
-			+ "Site",method=RequestMethod.POST)
-	public String save(Model model, @Valid Site site, BindingResult bindingResult) {
-		if( bindingResult.hasErrors()) {
-			return"CreerSite";
+	@RequestMapping(value = "/site/save", method = RequestMethod.POST)
+	public String saveSite(Model model, @Valid Site site, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "CreerSite";
 		}
 		siteRepository.save(site);
-		List<Site> listSite=siteRepository.findAll();
+		List<Site> listSite = siteRepository.findAll();
 		model.addAttribute("listSite", listSite);
-		List<Voie> listVoie=voieRepository.findAll();
+		List<Voie> listVoie = voieRepository.findAll();
 		model.addAttribute("listVoie", listVoie);
+		List<Longueur> listLongueur = longueurRepository.findAll();
+		model.addAttribute("listLongueur", listLongueur);
 
-		return"site";
+		return "site";
 	}
 
-
-	@GetMapping(value="/site/trouver") 
+	@GetMapping(value = "/site/trouver")
 	public String trouverSite(Model model,
-			
-			@RequestParam(name="page",defaultValue="0")int p,	  
-			@RequestParam(name="size",defaultValue="2")int s,
-			@RequestParam(name="motCle",defaultValue="")String mc) {
-		if(!mc.isBlank()) {
-			Page<Site> pageSites= siteRepository.chercher("%"+mc+"%",PageRequest.of(p,s));
 
-			model.addAttribute("listSite",pageSites.getContent());
-			int[]pages=new int[pageSites.getTotalPages()];
-					model.addAttribute("pages",pages);
-					model.addAttribute("size",s);
-					model.addAttribute("pageCourante",p);
-					model.addAttribute("motCle",mc);
-					List<Voie> listVoie=voieRepository.findAll();
-					model.addAttribute("listVoie", listVoie);
-			return"site";
+			@RequestParam(name = "page", defaultValue = "0") int p,
+			@RequestParam(name = "size", defaultValue = "2") int s,
+			@RequestParam(name = "motCle", defaultValue = "") String mc) {
+		if (!mc.isBlank()) {
+			Page<Site> pageSites = siteRepository.chercher("%" + mc + "%", PageRequest.of(p, s));
+
+			model.addAttribute("listSite", pageSites.getContent());
+			int[] pages = new int[pageSites.getTotalPages()];
+			model.addAttribute("pages", pages);
+			model.addAttribute("size", s);
+			model.addAttribute("pageCourante", p);
+			model.addAttribute("motCle", mc);
+			List<Voie> listVoie = voieRepository.findAll();
+			model.addAttribute("listVoie", listVoie);
+			return "site";
 		}
+
+		else
+			return "redirect:/site";
+
+	}
+
+	@RequestMapping(value = "/site/{id}/infoSite")
+	public String infoSite(Model model, @PathVariable(value = "id") Long id,
+			@RequestParam(name = "page", defaultValue = "0") int p,
+			@RequestParam(name = "size", defaultValue = "2") int s) {
+
+	Site site= siteRepository.findById(id).get();
+	model.addAttribute("site",site);
+	
+		List<Voie> listVoie = voieRepository.listeDeVoieParSite(id);
+		model.addAttribute("listVoie", listVoie);
 		
-		else return"redirect:/site";
+		List<Longueur> listLongueur = longueurRepository.findAll();
+		model.addAttribute("listLongueur", listLongueur);
 
-				 
-
-	 } 
+		return "infoSite";
+	}
+	
 
 
 

@@ -23,27 +23,31 @@
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8" />
-<title>CreerSite</title>
+<title>CreerVoie</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<div class="container">
 
 			<div class="panel panel-default">
-				<div class=" panel-heading">Créer un site</div>
+				<div class=" panel-heading">Créer une voie</div>
 				<div class="panel-body">
-					<form th:action="@{/site/save}" method="post">
+					<form th:action="@{/voie/save}" method="post">
 						<div class="form-group">
 							<label class="control-label">Nom:</label> <input
 								class="form-control" type="text" name="nom" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Département:</label> <input
-								class="form-control" type="text" name="departement" />
+							<label class="control-label">Hauteur:</label> <input
+								class="form-control" type="text" name="hauteur" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Ville:</label> <input
-								class="form-control" type="text" name="ville" />
+							<label class="control-label">Cotation:</label> <input
+								class="form-control" type="text" name="cotation" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Secteur:</label> <input
+								class="form-control" type="text" name="secteur" />
 						</div>
 						<div>
 							<button type="submit" class="btn btn-primary">Save</button>

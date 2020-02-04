@@ -21,35 +21,35 @@ import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Voie;
 
 @Controller
-public class VoieController {
-
+public class LongueurController {
+	
+	@Autowired
+	public LongueurRepository longueurRepository;
 	@Autowired
 	private VoieRepository voieRepository;
 	@Autowired
-	private LongueurRepository longueurRepository;
-	@Autowired
 	private SiteRepository siteRepository;
 
-	@GetMapping(value = "/voie/{id}/supprimer")
-	public String supprimerVoie(Model model, @PathVariable(value = "id") Long id) {
+	@GetMapping(value = "/longueur/{id}/supprimer")
+	public String supprimerLongueur(Model model, @PathVariable(value = "id") Long id) {
 
-		voieRepository.deleteById(id);
+		longueurRepository.deleteById(id);
 		return "redirect:/site";
 	}
 
-	@RequestMapping(value = "/voie/creer", method = RequestMethod.GET)
-	public String creerVoie(Model model) {
-		Voie voie = new Voie();
-		model.addAttribute("voie", voie);
-		return "CreerVoie";
+	@RequestMapping(value = "/longueur/creer", method = RequestMethod.GET)
+	public String creerLongueur(Model model) {
+		Longueur longueur = new Longueur();
+		model.addAttribute("longueur", longueur);
+		return "CreerLongueur";
 	}
 
-	@RequestMapping(value = "/voie/save", method = RequestMethod.POST)
-	public String saveVoie(Model model, @Valid Voie voie, BindingResult bindingResult) {
-/*		if (bindingResult.hasErrors()) {
-			return "CreerVoie";
+	@RequestMapping(value = "/longueur/save", method = RequestMethod.POST)
+	public String saveLongueur(Model model, @Valid Longueur longueur, BindingResult bindingResult) {
+		/*if (bindingResult.hasErrors()) {
+			return "CreerLongueur";
 		}
-		*/voieRepository.save(voie);
+		*/longueurRepository.save(longueur);
 		List<Site> listSite = siteRepository.findAll();
 		model.addAttribute("listSite", listSite);
 		List<Voie> listVoie = voieRepository.findAll();
@@ -57,6 +57,6 @@ public class VoieController {
 		List<Longueur> listLongueur = longueurRepository.findAll();
 		model.addAttribute("listLongueur", listLongueur);
 
-		return "site";
+		return "redirect:/site";
 	}
 }

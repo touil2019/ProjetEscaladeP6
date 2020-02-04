@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta charset="UTF-8" />
+
+</head>
+
+<body>
+	
+<header>
+		<nav class="nav navbar-nav">
+		<ul>
+				<li><a class="btn btn-primary" th:href="@{/site}">Site</a></li>
+				<li><a class="btn btn-primary" th:href="@{/site/creer}">Formulaire</a></li>
+				<li><a class="btn btn-primary" th:href="@{/site/trouver}">Rechercher</a></li>
+		</ul>
+		</nav>
+</header>
+	<section layout:fragment="content"></section>
+
+	<footer th:class="navbar-fixed-bottom">
+		<hr />
+		<div class="containe">
+			<small> Copyright 2020 </small>
+		</div>
+	</footer>
+</body>
+</html>

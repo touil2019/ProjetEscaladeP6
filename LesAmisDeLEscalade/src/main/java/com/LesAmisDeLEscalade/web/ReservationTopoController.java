@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.LesAmisDeLEscalade.dao.ReservationTopoRepository;
 
 @Controller
-public class ReservationTopo {
+public class ReservationTopoController {
 
 	@Autowired
 	public ReservationTopoRepository reservationtopoRepository;
