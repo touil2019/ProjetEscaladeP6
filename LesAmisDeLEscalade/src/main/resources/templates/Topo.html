@@ -41,16 +41,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- <tr th:each="lt:${listTopo}">
-						 <td><a th:text="${lt.nom}"
-							th:href="@{/topo/{id}/infoTopo (id=${lt.id})}"></a></td>
-						<td th:text="${lt.description}"></td>
-						<td th:text="${lt.disponibilite}"></td>
-						<td th:text="${#dates.format(lt.date, 'dd-MM-yyyy HH:mm')}"></td>
+					 <tr th:each="lto:${listTopo}">
+						 <td><a th:text="${lto.nom}"
+							th:href="@{/topo/{id}/infoTopo (id=${lto.id})}"></a></td>
+						<td th:text="${lto.description}"></td>
+						<td th:text="${lto.disponible}"></td>
+						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
-							th:href="@{/topo/{id}/infoTopo (id=${lt.id})}">supprimer</a></td>
-					</tr>-->
+							th:href="@{/topo/{id}/supprimer (id=${lto.id})}">supprimer</a></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
