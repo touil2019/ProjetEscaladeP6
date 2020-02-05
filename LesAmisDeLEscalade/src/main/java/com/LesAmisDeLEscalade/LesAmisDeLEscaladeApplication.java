@@ -15,7 +15,7 @@ import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Topo;
-import com.LesAmisDeLEscalade.entities.Users;
+import com.LesAmisDeLEscalade.entities.Usersold;
 import com.LesAmisDeLEscalade.entities.Voie;
 
 @SpringBootApplication
@@ -121,10 +121,10 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		longueur12.setVoie(voie6);
 		longueurRepository.save(longueur12);
 
-		usersRepository.save(new Users());
-		usersRepository.save(new Users());
-		usersRepository.save(new Users());
-		usersRepository.save(new Users());
+		usersRepository.save(new Usersold());
+		usersRepository.save(new Usersold());
+		usersRepository.save(new Usersold());
+		usersRepository.save(new Usersold());
 
 		Topo topo1= new Topo("Saint-Pierre","cadre accueillant",true,new Date());
 		topoRepository.save(topo1);

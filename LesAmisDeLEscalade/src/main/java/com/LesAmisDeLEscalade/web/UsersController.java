@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.LesAmisDeLEscalade.dao.UsersRepository;
 
-import com.LesAmisDeLEscalade.entities.Users;
+import com.LesAmisDeLEscalade.entities.Usersold;
 
 @Controller
 public class UsersController {

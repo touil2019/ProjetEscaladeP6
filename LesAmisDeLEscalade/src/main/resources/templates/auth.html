@@ -23,35 +23,9 @@
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8" />
-<title>CreerTopo</title>
+<title>Auth</title>
 </head>
 <body>
-	<div layout:fragment="content">
-		<div class="container">
-
-			<div class="panel panel-default">
-				<div class=" panel-heading">Créer un Topo</div>
-				<div class="panel-body">
-					<form th:action="@{/topo/save}" method="post">
-						<div class="form-group">
-							<label class="control-label">Nom:</label> <input
-								class="form-control" type="text" name="nom" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Description:</label> <input
-								class="form-control" type="text" name="description" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Disponibilité</label> <input
-								class="form-control" type="text" name="disponible" />
-						</div>
-						<div>
-							<button type="submit" class="btn btn-primary">Save</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<header th:replace="fragments/header::header"></header>
 </body>
 </html>

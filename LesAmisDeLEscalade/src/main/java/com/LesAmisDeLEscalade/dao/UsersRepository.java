@@ -8,4 +8,8 @@ import com.LesAmisDeLEscalade.entities.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users,Long> {
 
+	 static Users findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
