@@ -26,8 +26,8 @@ public class ReservationTopo implements Serializable {
 	private Topo topo;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_users")
-	private Utilisateur users;
+	@JoinColumn(name = "id_utilisateur")
+	private Utilisateur utilisateur;
 	
 	public ReservationTopo() {
 		super();
@@ -77,11 +77,11 @@ public class ReservationTopo implements Serializable {
 	public void setTopo(Topo topo) {
 		this.topo = topo;
 	}
-	public Utilisateur getUsers() {
-		return users;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
-	public void setUsers(Utilisateur users) {
-		this.users = users;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 	
 

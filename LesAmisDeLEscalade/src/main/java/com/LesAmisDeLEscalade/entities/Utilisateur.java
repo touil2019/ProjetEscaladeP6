@@ -76,6 +76,15 @@ public class Utilisateur implements UserDetails {
 	(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Topo> topos;
 	
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Collection<Site> sites;
+	
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Collection<ReservationTopo> reservationTopos;
+	
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Collection<Commentaire> commentaires;
+	
 	public Utilisateur() {
 		this.accountNonExpired = true;
 		this.accountNonLocked = true;
@@ -208,5 +217,32 @@ public class Utilisateur implements UserDetails {
 		if (!password.isEmpty()) {
 			this.password = BCryptManagerUtil.passwordencoder().encode(password);
 		}
+	
+	
 	}
+
+	public Collection<Site> getSites() {
+		return sites;
+	}
+
+	public void setSites(Collection<Site> sites) {
+		this.sites = sites;
+	}
+
+	public Collection<ReservationTopo> getReservationTopos() {
+		return reservationTopos;
+	}
+
+	public void setReservationTopos(Collection<ReservationTopo> reservationTopos) {
+		this.reservationTopos = reservationTopos;
+	}
+
+	public Collection<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+	
 }

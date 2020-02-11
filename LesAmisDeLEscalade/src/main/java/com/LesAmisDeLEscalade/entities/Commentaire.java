@@ -17,7 +17,9 @@ public class Commentaire implements Serializable {
 	private String commentaire;
 	private Date datedeparution;
 
-
+	@ManyToOne
+	@JoinColumn(name = "id_utilisateur")
+	private Utilisateur utilisateur;
 	
 	
 	
@@ -54,6 +56,14 @@ public class Commentaire implements Serializable {
 
 	public void setDatedeparution(Date datedeparution) {
 		this.datedeparution = datedeparution;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 		
