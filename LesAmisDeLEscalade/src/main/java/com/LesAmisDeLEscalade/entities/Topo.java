@@ -6,6 +6,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Topo implements Serializable {
@@ -16,6 +20,16 @@ public class Topo implements Serializable {
 	private boolean disponible;
 	private Date date;
 	private String nom;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID_SITE")
+	private Site site;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_utilisateur")
+	private Utilisateur utilisateur;
+		
+	
 
 	public Topo() {
 		super();
@@ -68,6 +82,23 @@ public class Topo implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+
 
 }

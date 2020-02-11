@@ -1,7 +1,6 @@
 package com.LesAmisDeLEscalade.entities;
 
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,13 +20,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "users")
-public class Users implements UserDetails {
+@Table(name = "utilisateur")
+public class Utilisateur implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_user")
-	private Long idUser;
+	@Column(name="id")
+	private Long id;
 
 	@Column(name = "username", nullable = false, unique = true)
 	@NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères")
@@ -55,11 +54,11 @@ public class Users implements UserDetails {
 	private String lastname;
 
 	@ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
-	@Cascade(value = CascadeType.ALL)
+	
 	@JoinTable(indexes = {
-			@Index(name = "INDEX_USER_ROLE", columnList = "id_user") }, name = "roles", joinColumns = @JoinColumn(name = "id_user"))
+	@Index(name = "INDEX_USER_ROLE", columnList = "id_utilisateur") }, name = "roles", joinColumns = @JoinColumn(name = "id_utilisateur"))
 	@Enumerated(EnumType.STRING)
-	private Set<Role> roles;
+	private Set<RoleEnum> roles;
 
 	@Column(name = "account_non_expired")
 	private boolean accountNonExpired;
@@ -73,20 +72,11 @@ public class Users implements UserDetails {
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY)
-	private Collection<Site> sites;
-
-	@OneToOne
-	@JoinColumn(name = "ID_RESERVATION")
-	private ReservationTopo reservation;
-
-	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY)
+	@OneToMany
+	(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Topo> topos;
-
-	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY)
-	private Collection<CommentaireSpot> commentaires;
-
-	public Users() {
+	
+	public Utilisateur() {
 		this.accountNonExpired = true;
 		this.accountNonLocked = true;
 		this.credentialsNonExpired = true;
@@ -95,7 +85,7 @@ public class Users implements UserDetails {
 		this.roles.add(RoleEnum.ROLE_USER);
 	}
 
-	public Users(String username, String password, String firstname, String lastname, String email,
+	public Utilisateur(String username, String password, String firstname, String lastname, String email,
 			Set<RoleEnum> roles) {
 		this.username = username;
 		this.password = BCryptManagerUtil.passwordencoder().encode(password);
@@ -109,31 +99,7 @@ public class Users implements UserDetails {
 		this.roles = roles;
 	}
 
-	public Collection<CommentaireSpot> getCommentaires() {
-		return commentaires;
-	}
-
-	public void setCommentaires(Collection<CommentaireSpot> commentaires) {
-		this.commentaires = commentaires;
-	}
-
-	public ReservationTopo getReservation() {
-		return reservation;
-	}
-
-	public void setReservation(ReservationTopo reservation) {
-		this.reservation = reservation;
-	}
-
-	public Collection<Site> getSites() {
-		return sites;
-	}
-
-	public void setSites(Collection<Site> sites) {
-		this.sites = sites;
-	}
-
-	public Collection<Topo> getTopos() {
+		public Collection<Topo> getTopos() {
 		return topos;
 	}
 
@@ -141,12 +107,12 @@ public class Users implements UserDetails {
 		this.topos = topos;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setUsername(String username) {
@@ -177,11 +143,11 @@ public class Users implements UserDetails {
 		this.lastname = lastname;
 	}
 
-	public Set<Role> getRoles() {
+	public Set<RoleEnum> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Set<RoleEnum> roles) {
 		this.roles = roles;
 	}
 

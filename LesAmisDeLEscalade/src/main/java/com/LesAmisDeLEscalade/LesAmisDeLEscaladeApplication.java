@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.LesAmisDeLEscalade.dao.LongueurRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.TopoRepository;
-import com.LesAmisDeLEscalade.dao.UsersRepository;
+import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
@@ -28,7 +28,7 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 	@Autowired
 	private LongueurRepository longueurRepository;
 	@Autowired
-	private UsersRepository usersRepository;
+	private UtilisateurRepository utilisateurRepository;
 	@Autowired
 	private TopoRepository topoRepository;
 
@@ -120,11 +120,7 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		Longueur longueur12 = new Longueur("Route du vieux phare", 1400, "2B");
 		longueur12.setVoie(voie6);
 		longueurRepository.save(longueur12);
-
-		usersRepository.save(new Usersold());
-		usersRepository.save(new Usersold());
-		usersRepository.save(new Usersold());
-		usersRepository.save(new Usersold());
+	
 
 		Topo topo1= new Topo("Saint-Pierre","cadre accueillant",true,new Date());
 		topoRepository.save(topo1);

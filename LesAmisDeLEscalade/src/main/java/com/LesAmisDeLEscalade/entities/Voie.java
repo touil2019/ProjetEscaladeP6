@@ -35,7 +35,7 @@ public class Voie implements Serializable {
 
 	public Voie() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Voie(String secteur, String cotation, int hauteur, String nom) {

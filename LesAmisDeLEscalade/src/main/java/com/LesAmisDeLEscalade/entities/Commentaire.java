@@ -6,38 +6,55 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 @Entity
-public class CommentaireSpot implements Serializable{
-@Id @GeneratedValue
+public class Commentaire implements Serializable {
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String commentaire;
 	private Date datedeparution;
-	public CommentaireSpot() {
+
+
+	
+	
+	
+	public Commentaire() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
-	public CommentaireSpot(String commentaire, Date datedeparution) {
+
+	public Commentaire(String commentaire, Date datedeparution) {
 		super();
 		this.commentaire = commentaire;
 		this.datedeparution = datedeparution;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getCommentaire() {
 		return commentaire;
 	}
+
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
+
 	public Date getDatedeparution() {
 		return datedeparution;
 	}
+
 	public void setDatedeparution(Date datedeparution) {
 		this.datedeparution = datedeparution;
 	}
-	
+
+		
 }
