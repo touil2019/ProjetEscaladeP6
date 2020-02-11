@@ -1,7 +1,5 @@
 package com.LesAmisDeLEscalade.security;
 
-import com.LesAmisDeLEscalade.security.RoleEnum;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -48,7 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.sessionManagement().maximumSessions(1)
 				.expiredUrl("/login");
-		http.authorizeRequests().anyRequest().hasRole("USER");
+        http.authorizeRequests().antMatchers("/static/**").permitAll();
+
+        http.authorizeRequests().antMatchers("/add*","/edit*","/delete*","/topo/*","/profil*","/profil/*","/topo/creer").permitAll();
+        http.authorizeRequests().antMatchers("/administration").hasRole("ADMIN");
 	}
 	/**
      * this method set the encoder

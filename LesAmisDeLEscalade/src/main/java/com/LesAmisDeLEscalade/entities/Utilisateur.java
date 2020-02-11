@@ -94,8 +94,7 @@ public class Utilisateur implements UserDetails {
 		this.roles.add(RoleEnum.ROLE_USER);
 	}
 
-	public Utilisateur(String username, String password, String firstname, String lastname, String email,
-			Set<RoleEnum> roles) {
+	public Utilisateur(String username, String password, String firstname, String lastname, String email) {
 		this.username = username;
 		this.password = BCryptManagerUtil.passwordencoder().encode(password);
 		this.firstname = firstname;
@@ -105,7 +104,6 @@ public class Utilisateur implements UserDetails {
 		this.accountNonLocked = true;
 		this.credentialsNonExpired = true;
 		this.enabled = true;
-		this.roles = roles;
 	}
 
 		public Collection<Topo> getTopos() {

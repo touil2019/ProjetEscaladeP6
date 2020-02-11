@@ -41,7 +41,7 @@ public class LongueurController {
 	public String creerLongueur(Model model) {
 		Longueur longueur = new Longueur();
 		model.addAttribute("longueur", longueur);
-		return "CreerLongueur";
+		return "/CreerLongueur";
 	}
 
 	@RequestMapping(value = "/longueur/save", method = RequestMethod.POST)

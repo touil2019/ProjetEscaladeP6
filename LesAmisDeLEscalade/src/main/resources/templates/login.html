@@ -23,33 +23,34 @@
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8" />
-<title>Insert title here</title>
+<title>Connexion</title>
 </head>
 <body>
-    <div>
-        <header th:replace="fragments/header::header"></header>
-        <div>
-            <form th:action="@{/login}" method="post">
-                <fieldset>
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="username" required="required" autofocus="autofocus" />
-                    </div>
+	<div layout:fragment="content">
+		<div class="container">
+			<form th:action="@{/login}" method="post">
+				<fieldset>
+					<div>
+						<label for="username">Username</label> <input type="text"
+							id="username" name="username" placeholder="username"
+							required="required" autofocus="autofocus" />
+					</div>
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="password" required="required" />
-                    </div>
+					<div>
+						<label for="password">Password</label> <input type="password"
+							id="password" name="password" placeholder="password"
+							required="required" />
+					</div>
 
-                    <div>
-                        <input type="submit" value="Log in" />
-                    </div>
+					<div>
+						<input type="submit" value="Log in" />
+					</div>
 
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

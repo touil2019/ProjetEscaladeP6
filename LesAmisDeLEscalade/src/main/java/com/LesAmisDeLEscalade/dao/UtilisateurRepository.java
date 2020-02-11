@@ -9,7 +9,7 @@ import com.LesAmisDeLEscalade.entities.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur,Long> {
 
 	 static Utilisateur findByUsername(String username) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

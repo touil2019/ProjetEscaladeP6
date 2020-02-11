@@ -1,6 +1,8 @@
 package com.LesAmisDeLEscalade;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,8 +17,9 @@ import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Topo;
-import com.LesAmisDeLEscalade.entities.Usersold;
+import com.LesAmisDeLEscalade.entities.Utilisateur;
 import com.LesAmisDeLEscalade.entities.Voie;
+import com.LesAmisDeLEscalade.security.RoleEnum;
 
 @SpringBootApplication
 public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
@@ -38,8 +41,22 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		
+		Utilisateur user = new Utilisateur("user","user","user","user","user1@gmail.com");
+		Set<RoleEnum> userRole =new HashSet<>();
+		userRole.add(RoleEnum.ROLE_USER);
+        user.setRoles(userRole);
+		utilisateurRepository.save(user);
+		
+		Utilisateur admin = new Utilisateur("admin","admin","admin","admin","admin1@gmail.com");
+		Set<RoleEnum> adminRole =new HashSet<>();
+		adminRole.add(RoleEnum.ROLE_USER);
+        adminRole.add(RoleEnum.ROLE_ADMIN);
+        admin.setRoles(adminRole);
+		utilisateurRepository.save(admin);
+		
 		Site site1 = new Site("le pic de dante", "Guyane", "Maripasoula");
+		site1.setUtilisateur(user);
 		siteRepository.save(site1);
 
 		Site site2 = new Site("le pic vert", "Réunion", "Bois de Nèfles");

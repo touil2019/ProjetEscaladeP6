@@ -28,7 +28,7 @@ public class TopoController {
 	public String creerTopo(Model model) {
 		Topo topo = new Topo();
 		model.addAttribute("topo", topo);
-		return "CreerTopo";
+		return "/CreerTopo";
 	}
 
 	@RequestMapping(value = "/topo/save", method = RequestMethod.POST)

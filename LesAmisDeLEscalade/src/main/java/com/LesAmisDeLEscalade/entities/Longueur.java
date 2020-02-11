@@ -18,9 +18,7 @@ public class Longueur implements Serializable {
 	private int hauteur;
 	private String cotation;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_SITE")
-	private Site site;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "ID_VOIE")
@@ -78,12 +76,6 @@ public class Longueur implements Serializable {
 		this.voie = voie;
 	}
 
-	public Site getSite() {
-		return site;
-	}
 
-	public void setSite(Site site) {
-		this.site = site;
-	}
 
 }

@@ -34,9 +34,6 @@ public class Site implements Serializable {
 	@OneToMany(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Voie> voies;
 	
-	@OneToMany(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Collection<Longueur> longueur;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_utilisateur")
 	private Utilisateur utilisateur;
@@ -100,14 +97,6 @@ public class Site implements Serializable {
 
 	public void setTopos(Collection<Topo> topos) {
 		this.topos = topos;
-	}
-
-	public Collection<Longueur> getLongueur() {
-		return longueur;
-	}
-
-	public void setLongueur(Collection<Longueur> longueur) {
-		this.longueur = longueur;
 	}
 
 	public Utilisateur getUtilisateur() {

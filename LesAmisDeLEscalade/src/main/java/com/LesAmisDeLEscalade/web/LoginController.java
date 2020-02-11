@@ -18,6 +18,6 @@ public class LoginController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             return new ModelAndView("redirect:/profile/notes");
         }
-        return new ModelAndView("Login");
+        return new ModelAndView("login");
     }
 }
