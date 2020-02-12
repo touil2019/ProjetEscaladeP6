@@ -33,6 +33,6 @@ public class UtilisateurController {
 		}
 		utilisateurRepository.save(utilisateur);
 		
-		return "Profil";
+		return "login";
 	}
 }

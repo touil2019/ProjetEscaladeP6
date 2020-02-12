@@ -121,7 +121,7 @@ public class SiteController {
 		List<Voie> listVoie = voieRepository.listeDeVoieParSite(id);
 		model.addAttribute("listVoie", listVoie);
 		
-		List<Longueur> listLongueur = longueurRepository.findAll();
+		List<Longueur> listLongueur = longueurRepository.listeDeLongueurParSite(id);
 		model.addAttribute("listLongueur", listLongueur);
 
 		return "infoSite";

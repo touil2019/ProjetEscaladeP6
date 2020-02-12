@@ -46,10 +46,9 @@ public class VoieController {
 
 	@RequestMapping(value = "/voie/save", method = RequestMethod.POST)
 	public String saveVoie(Model model, @Valid Voie voie, BindingResult bindingResult) {
-/*		if (bindingResult.hasErrors()) {
-			return "CreerVoie";
-		}
-		*/voieRepository.save(voie);
+		
+		  if (bindingResult.hasErrors()) { return "CreerVoie"; }
+		 voieRepository.save(voie);
 		List<Site> listSite = siteRepository.findAll();
 		model.addAttribute("listSite", listSite);
 		List<Voie> listVoie = voieRepository.findAll();

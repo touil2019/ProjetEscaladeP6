@@ -66,6 +66,10 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		Site site3 = new Site("le pic rouge", "Mayotte", "Mamoudzou");
 		site3.setUtilisateur(admin);
 		siteRepository.save(site3);
+		
+		Site site4 = new Site("Saint-Pierre", "Guadeloupe", "Pointe-à-Pitre");
+		site4.setUtilisateur(admin);
+		siteRepository.save(site4);
 
 		Voie voie1 = new Voie("secteur1", "4C", 10, "Chemin Maripasoula");
 		voie1.setSite(site1);
@@ -143,18 +147,22 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 
 		Topo topo1= new Topo("Saint-Pierre","cadre accueillant",true,new Date());
 		topo1.setUtilisateur(admin);
+		topo1.setSite(site4);
 		topoRepository.save(topo1);
 		
-		Topo topo2= new Topo("Croix Verte","lieu ensoleillé",true,new Date());
+		Topo topo2= new Topo("Croix Rouge","lieu ensoleillé",true,new Date());
 		topo2.setUtilisateur(admin);
+		topo2.setSite(site3);
 		topoRepository.save(topo2);
 		
 		Topo topo3= new Topo("Maripasoula","plage vierge",true,new Date());
 		topo3.setUtilisateur(user);
+		topo3.setSite(site1);
 		topoRepository.save(topo3);
 		
 		Topo topo4= new Topo("Bois de Nèfles","ballade buccolique",true,new Date());
 		topo4.setUtilisateur(user);
+		topo4.setSite(site2);
 		topoRepository.save(topo4);		
 		
 		

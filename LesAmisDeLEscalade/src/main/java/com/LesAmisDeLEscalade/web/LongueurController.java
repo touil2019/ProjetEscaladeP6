@@ -46,10 +46,10 @@ public class LongueurController {
 
 	@RequestMapping(value = "/longueur/save", method = RequestMethod.POST)
 	public String saveLongueur(Model model, @Valid Longueur longueur, BindingResult bindingResult) {
-		/*if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			return "CreerLongueur";
 		}
-		*/longueurRepository.save(longueur);
+		longueurRepository.save(longueur);
 		List<Site> listSite = siteRepository.findAll();
 		model.addAttribute("listSite", listSite);
 		List<Voie> listVoie = voieRepository.findAll();

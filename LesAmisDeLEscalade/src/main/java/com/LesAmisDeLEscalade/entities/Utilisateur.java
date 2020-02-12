@@ -1,6 +1,30 @@
 package com.LesAmisDeLEscalade.entities;
 
-import org.hibernate.annotations.Cascade;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,23 +33,13 @@ import org.springframework.util.StringUtils;
 import com.LesAmisDeLEscalade.security.BCryptManagerUtil;
 import com.LesAmisDeLEscalade.security.RoleEnum;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Entity
 @Table(name = "utilisateur")
 public class Utilisateur implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
 
 	@Column(name = "username", nullable = false, unique = true)
@@ -54,9 +68,9 @@ public class Utilisateur implements UserDetails {
 	private String lastname;
 
 	@ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
-	
+
 	@JoinTable(indexes = {
-	@Index(name = "INDEX_USER_ROLE", columnList = "id_utilisateur") }, name = "roles", joinColumns = @JoinColumn(name = "id_utilisateur"))
+			@Index(name = "INDEX_USER_ROLE", columnList = "id_utilisateur") }, name = "roles", joinColumns = @JoinColumn(name = "id_utilisateur"))
 	@Enumerated(EnumType.STRING)
 	private Set<RoleEnum> roles;
 
@@ -72,19 +86,18 @@ public class Utilisateur implements UserDetails {
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	@OneToMany
-	(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Topo> topos;
-	
+
 	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Site> sites;
-	
+
 	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<ReservationTopo> reservationTopos;
-	
+
 	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Commentaire> commentaires;
-	
+
 	public Utilisateur() {
 		this.accountNonExpired = true;
 		this.accountNonLocked = true;
@@ -104,14 +117,6 @@ public class Utilisateur implements UserDetails {
 		this.accountNonLocked = true;
 		this.credentialsNonExpired = true;
 		this.enabled = true;
-	}
-
-		public Collection<Topo> getTopos() {
-		return topos;
-	}
-
-	public void setTopos(Collection<Topo> topos) {
-		this.topos = topos;
 	}
 
 	public Long getId() {
@@ -215,8 +220,7 @@ public class Utilisateur implements UserDetails {
 		if (!password.isEmpty()) {
 			this.password = BCryptManagerUtil.passwordencoder().encode(password);
 		}
-	
-	
+
 	}
 
 	public Collection<Site> getSites() {
@@ -242,5 +246,13 @@ public class Utilisateur implements UserDetails {
 	public void setCommentaires(Collection<Commentaire> commentaires) {
 		this.commentaires = commentaires;
 	}
-	
+
+	public Collection<Topo> getTopos() {
+		return topos;
+	}
+
+	public void setTopos(Collection<Topo> topos) {
+		this.topos = topos;
+	}
+
 }
