@@ -32,31 +32,28 @@
 			<div class="panel panel-default">
 				<div class=" panel-heading">Créer votre compte</div>
 				<div class="panel-body">
-					<form th:action="@{/users/save}" method="post">
+					<form th:action="@{/utilisateur/save}" method="post">
 						<div class="form-group">
-							<label class="control-label">Pseudo:</label> <input
-								class="form-control" type="text" name="pseudo" />
+							<label class="control-label">Username:</label> <input
+								class="form-control" type="text" name="username" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Nom-Destinataire:</label> <input
-								class="form-control" type="text" name="nom-destinataire" />
+							<label class="control-label">password:</label> <input
+								class="form-control" type="text" name="password" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Num-Adhérent:</label> <input
-								class="form-control" type="text" name="num-adherent" />
+							<label class="control-label">Firstname:</label> <input
+								class="form-control" type="text" name="firstname" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">Voie:</label> <input
-								class="form-control" type="text" name="voie" />
+							<label class="control-label">Lastname:</label> <input
+								class="form-control" type="text" name="lastname" />
 						</div>
 						<div class="form-group">
-							<label class="control-label">complément-localisation:</label> <input
-								class="form-control" type="text" name="complement-localisation" />
+							<label class="control-label">Email:</label> <input
+								class="form-control" type="text" name="email" />
 						</div>
-						<div class="form-group">
-							<label class="control-label">localité:</label> <input
-								class="form-control" type="text" name="localite" />
-						</div>
+
 						<div>
 							<button type="submit" class="btn btn-primary">Save</button>
 						</div>

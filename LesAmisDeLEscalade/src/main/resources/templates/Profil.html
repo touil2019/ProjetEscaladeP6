@@ -32,12 +32,13 @@
 				<h3 class="card-title">Information Utilisateur</h3>
 			</div>
 			<div class="card-body">
-				<label>Pseudo:</label> <label th:text="${users.pseudo}"></label> <label>nom-Destinataire:</label>
-				<label th:text="${users.nom-Destinataire}"></label> <label>num-Adherent:</label>
-				<label th:text="${users.num-Adherent}"></label> <label>Voie:</label>
-				<label th:text="${users.voie}"></label> <label>complementLocalite:</label>
-				<label th:text="${users.complementLocalite}"></label> <label>Localite:</label>
-				<label th:text="${users.localite}"></label>
+				<label>Utilisateur:</label>
+				<label th:text="${utilisateur.username}"></label> <label>Username:</label>
+				<label th:text="${utilisateur.password}"></label> <label>Password:</label>
+				<label th:text="${utilisateur.firstname}"></label> <label>Firstname:</label>
+				<label th:text="${utilisateur.lastname}"></label> <label>Lastname:</label>
+				<label th:text="${utilisateur.email}"></label> <label>email:</label>
+				
 			</div>
 		</div>
 	</div>
