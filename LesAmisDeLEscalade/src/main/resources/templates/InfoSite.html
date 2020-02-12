@@ -35,12 +35,13 @@
 				<label>Site:</label> <label th:text="${site.nom}"></label> 
 				<label>Département:</label> <label th:text="${site.departement}"></label>
 				<label>Ville :</label> <label th:text="${site.ville}"></label>
+				<a class="btn btn-primary" th:href="@{/voie/creer}">Ajouter
+					une voie </a>
 			</div>
 		</div>
 		<div class="container">
 			<h3>
-				ListeVoie <a class="btn btn-primary" th:href="@{/voie/creer}">Ajouter
-					une voie </a>
+				ListeVoie 
 			</h3>
 			<table class="table">
 				<thead>
@@ -63,6 +64,8 @@
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
+							<td><a class="btn btn-primary"
+					th:href="@{/longueur/creer}">Ajouter une longueur </a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -70,8 +73,7 @@
 		</div>
 		<div class="container">
 			<h3>
-				ListeLongueur <a class="btn btn-primary"
-					th:href="@{/longueur/creer}">Ajouter une longueur </a>
+				ListeLongueur 
 			</h3>
 			<table class="table">
 				<thead>
