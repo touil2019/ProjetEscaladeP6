@@ -1,5 +1,7 @@
 package com.LesAmisDeLEscalade.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import com.LesAmisDeLEscalade.dao.LongueurRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Longueur;
+import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Voie;
 
 @Controller
@@ -51,6 +54,12 @@ public class LongueurController {
 		Voie voie = voieRepository.findById(id).get();
 		longueur.setVoie(voie);
 		longueurRepository.save(longueur);
+		List<Site> listSite = siteRepository.findAll();
+		model.addAttribute("listSite", listSite);
+		List<Voie> listVoie = voieRepository.findAll();
+		model.addAttribute("listVoie", listVoie);
+		List<Longueur> listLongueur = longueurRepository.findAll();
+		model.addAttribute("listLongueur", listLongueur);
 
 		return "redirect:/site/" + id + "/infoSite";
 	}

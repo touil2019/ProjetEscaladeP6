@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Topo</title>
+</head>
+<body>
+<div layout:fragment="content">
+		<div class="card col-md-6 container">
+			<div class="card-header">
+				<h3 class="card-title">Information Site</h3>
+			</div>
+			<div class="card-body">
+				<label>Site:</label> <label th:text="${site.nom}"></label> 
+				<label>Département:</label> <label th:text="${site.departement}"></label>
+				<label>Ville :</label> <label th:text="${site.ville}"></label>
+				<a class="btn btn-primary" th:href="@{/site/{id}/voie/creer(id=${site.id})}">Ajouter
+					une voie </a>
+			</div>
+		</div>
+</body>
+</html>

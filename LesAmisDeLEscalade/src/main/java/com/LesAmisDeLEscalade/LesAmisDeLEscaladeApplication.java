@@ -9,11 +9,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.LesAmisDeLEscalade.dao.CommentaireSpotRepository;
 import com.LesAmisDeLEscalade.dao.LongueurRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
+import com.LesAmisDeLEscalade.entities.Commentaire;
 import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Topo;
@@ -34,7 +36,9 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 	private UtilisateurRepository utilisateurRepository;
 	@Autowired
 	private TopoRepository topoRepository;
-
+	@Autowired
+	private CommentaireSpotRepository commentaireSpotRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(LesAmisDeLEscaladeApplication.class, args);
 	}
@@ -165,7 +169,21 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		topo4.setSite(site2);
 		topoRepository.save(topo4);		
 		
+		Commentaire commentaire1= new Commentaire("commentaire", new Date());
+		commentaire1.setUtilisateur(user);
+		commentaireSpotRepository.save(commentaire1);
 		
+		Commentaire commentaire2= new Commentaire("commentaire", new Date());
+		commentaire2.setUtilisateur(user);
+		commentaireSpotRepository.save(commentaire2);
+		
+		Commentaire commentaire3= new Commentaire("commentaire", new Date());
+		commentaire3.setUtilisateur(admin);
+		commentaireSpotRepository.save(commentaire3);
+		
+		Commentaire commentaire4= new Commentaire("commentaire", new Date());
+		commentaire4.setUtilisateur(admin);
+		commentaireSpotRepository.save(commentaire4);
 	}
 
 }
