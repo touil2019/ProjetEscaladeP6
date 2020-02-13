@@ -37,25 +37,27 @@ public class VoieController {
 		return "redirect:/site";
 	}
 
-	@RequestMapping(value = "/voie/creer", method = RequestMethod.GET)
-	public String creerVoie(Model model) {
+	@RequestMapping(value = "/site/{id}/voie/creer", method = RequestMethod.GET)
+	public String creerVoie(Model model, @PathVariable(value = "id") Long id) {
 		Voie voie = new Voie();
 		model.addAttribute("voie", voie);
+		model.addAttribute("idSite", id);
 		return "CreerVoie";
+
 	}
 
-	@RequestMapping(value = "/voie/save", method = RequestMethod.POST)
-	public String saveVoie(Model model, @Valid Voie voie, BindingResult bindingResult) {
-		
-		  if (bindingResult.hasErrors()) { return "CreerVoie"; }
-		 voieRepository.save(voie);
-		List<Site> listSite = siteRepository.findAll();
-		model.addAttribute("listSite", listSite);
-		List<Voie> listVoie = voieRepository.findAll();
-		model.addAttribute("listVoie", listVoie);
-		List<Longueur> listLongueur = longueurRepository.findAll();
-		model.addAttribute("listLongueur", listLongueur);
+	@RequestMapping(value = "/site/{idURL}/voie/save", method = RequestMethod.POST)
+	public String saveVoie(Model model, @Valid Voie voie,
+			@PathVariable(value = "idURL") Long id,
+			BindingResult bindingResult) {
 
-		return "site";
+		if (bindingResult.hasErrors()) {
+			return "CreerVoie";
+		}
+		Site site= siteRepository.findById(id).get();
+		voie.setSite(site);
+		voieRepository.save(voie);
+		
+		return "redirect:/site/"+id+"/infoSite";
 	}
 }

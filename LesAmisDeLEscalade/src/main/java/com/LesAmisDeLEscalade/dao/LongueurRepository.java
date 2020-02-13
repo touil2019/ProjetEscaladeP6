@@ -12,4 +12,6 @@ import com.LesAmisDeLEscalade.entities.Longueur;
 public interface LongueurRepository extends JpaRepository<Longueur,Long> {
 	@Query("select l from Longueur l where l.voie.site.id=:id")
 	public List<Longueur> listeDeLongueurParSite(@Param("id") Long id);
+	
+	
 }

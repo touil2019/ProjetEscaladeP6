@@ -1,7 +1,5 @@
 package com.LesAmisDeLEscalade.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +15,11 @@ import com.LesAmisDeLEscalade.dao.LongueurRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Longueur;
-import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Voie;
 
 @Controller
 public class LongueurController {
-	
+
 	@Autowired
 	public LongueurRepository longueurRepository;
 	@Autowired
@@ -37,26 +34,24 @@ public class LongueurController {
 		return "redirect:/site";
 	}
 
-	@RequestMapping(value = "/longueur/creer", method = RequestMethod.GET)
-	public String creerLongueur(Model model) {
+	@RequestMapping(value = "/voie/{id}/longueur/creer", method = RequestMethod.GET)
+	public String creerLongueur(Model model, @PathVariable(value = "id") Long id) {
 		Longueur longueur = new Longueur();
 		model.addAttribute("longueur", longueur);
+		model.addAttribute("idVoie", id);
 		return "/CreerLongueur";
 	}
 
-	@RequestMapping(value = "/longueur/save", method = RequestMethod.POST)
-	public String saveLongueur(Model model, @Valid Longueur longueur, BindingResult bindingResult) {
+	@RequestMapping(value = "/voie/{id}/longueur/save", method = RequestMethod.POST)
+	public String saveLongueur(Model model, @Valid Longueur longueur, @PathVariable(value = "id") Long id,
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "CreerLongueur";
 		}
+		Voie voie = voieRepository.findById(id).get();
+		longueur.setVoie(voie);
 		longueurRepository.save(longueur);
-		List<Site> listSite = siteRepository.findAll();
-		model.addAttribute("listSite", listSite);
-		List<Voie> listVoie = voieRepository.findAll();
-		model.addAttribute("listVoie", listVoie);
-		List<Longueur> listLongueur = longueurRepository.findAll();
-		model.addAttribute("listLongueur", listLongueur);
 
-		return "redirect:/site";
+		return "redirect:/site/" + id + "/infoSite";
 	}
 }

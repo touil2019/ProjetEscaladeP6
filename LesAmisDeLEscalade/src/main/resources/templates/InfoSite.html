@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="card">
+		<div class="card col-md-6 container">
 			<div class="card-header">
 				<h3 class="card-title">Information Site</h3>
 			</div>
@@ -35,10 +35,11 @@
 				<label>Site:</label> <label th:text="${site.nom}"></label> 
 				<label>Département:</label> <label th:text="${site.departement}"></label>
 				<label>Ville :</label> <label th:text="${site.ville}"></label>
-				<a class="btn btn-primary" th:href="@{/voie/creer}">Ajouter
+				<a class="btn btn-primary" th:href="@{/site/{id}/voie/creer(id=${site.id})}">Ajouter
 					une voie </a>
 			</div>
 		</div>
+		<hr/>
 		<div class="container">
 			<h3>
 				ListeVoie 
@@ -47,11 +48,12 @@
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>nom</th>
-						<th>secteur</th>
-						<th>cotation</th>
-						<th>hauteur</th>
-						<th>supprimer</th>
+						<th>Nom</th>
+						<th>Secteur</th>
+						<th>Cotation</th>
+						<th>Hauteur</th>
+						<th>Supprimer</th>
+						<th>Nouvelle longueur</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,13 +66,13 @@
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
-							<td><a class="btn btn-primary"
-					th:href="@{/longueur/creer}">Ajouter une longueur </a></td>
+						<td><a class="btn btn-primary" th:href="@{/voie/{id}/longueur/creer(id=${lv.id})}">Ajouter une longueur </a></td>
 					</tr>
 				</tbody>
 			</table>
 
 		</div>
+		<hr/>
 		<div class="container">
 			<h3>
 				ListeLongueur 
@@ -79,10 +81,11 @@
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>nom</th>
-						<th>cotation</th>
-						<th>hauteur</th>
-						<th>supprimer</th>
+						<th>Nom</th>
+						<th>Cotation</th>
+						<th>Hauteur</th>
+						<th>Supprimer</th>
+						<th>Nouvelle voie</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,6 +97,8 @@
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/longueur/{id}/supprimer(id=${ll.id})}">supprimer</a></td>
+						<td><<a class="btn btn-primary" th:href="@{/voie/{id}/longueur/creer(id=${ll.id})}">Ajouter
+					une voie </a></td>
 					</tr>
 				</tbody>
 			</table>

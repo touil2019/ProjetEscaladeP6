@@ -14,7 +14,7 @@ public class Commentaire implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String commentaire;
+	private String contenu;
 	private Date datedeparution;
 
 	@ManyToOne
@@ -28,9 +28,9 @@ public class Commentaire implements Serializable {
 		
 	}
 
-	public Commentaire(String commentaire, Date datedeparution) {
+	public Commentaire(String contenu, Date datedeparution) {
 		super();
-		this.commentaire = commentaire;
+		this.contenu =  contenu;
 		this.datedeparution = datedeparution;
 	}
 
@@ -42,12 +42,13 @@ public class Commentaire implements Serializable {
 		this.id = id;
 	}
 
-	public String getCommentaire() {
-		return commentaire;
+
+	public String getContenu() {
+		return contenu;
 	}
 
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
 	}
 
 	public Date getDatedeparution() {

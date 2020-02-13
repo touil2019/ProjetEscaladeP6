@@ -16,32 +16,40 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="UTF-8" />
 
 </head>
 
 <body>
-	
-<header>
-	<div class="d-flex justify-content-left">
-				<div class="brand_logo_container">
-					<img src="https://user.oc-static.com/upload/2019/04/26/15562870935067_icon-above-font.png" class="brand_logo" alt="Logo">
-				</div>
+
+	<header>
+		<div class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+			<div class="brand_logo_container">
+				<img
+					src="https://user.oc-static.com/upload/2019/04/26/15562870935067_icon-above-font.png"
+					class="brand_logo" alt="Logo">
 			</div>
+		
+<span class="navbar-toggler-icon"></span>
 		<nav class="nav navbar-nav">
-		<ul>
-				<li><a class="btn btn-primary" th:href="@{/site}">Site</a></li>
-				<li><a class="btn btn-primary" th:href="@{/site/creer}">Ajouter Un Site</a></li>
-				<li><a class="btn btn-primary" th:href="@{/site/trouver}">Rechercher</a></li>
-				<li><a class="btn btn-primary" th:href="@{/topo}">Topo</a></li>
-				<li><a class="btn btn-primary" th:href="@{/login}">Connexion</a></li>
-		</ul>
+			<ul class="navbar-nav m-auto">
+				<li  class="nav-item active"><a class="btn btn-primary" th:href="@{/site}">Site</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:href="@{/site/creer}">Ajouter
+						Un Site</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:href="@{/site/trouver}">Rechercher</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:href="@{/topo}">Topo</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:href="@{/login}">Connexion</a></li>
+			</ul>
 		</nav>
-</header>
+		</div>
+	</header>
+	<hr />
 	<section layout:fragment="content"></section>
 
 	<footer th:class="navbar-fixed-bottom">
+		<hr />
 		<hr />
 		<div class="containe">
 			<small> Copyright 2020 </small>

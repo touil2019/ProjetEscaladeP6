@@ -32,7 +32,7 @@
 			<div class="panel panel-default">
 				<div class=" panel-heading">Créer une voie</div>
 				<div class="panel-body">
-					<form th:action="@{/voie/save}" method="post">
+					<form th:action="@{/site/{id}/voie/save(id=${idSite})}" method="post">
 						<div class="form-group">
 							<label class="control-label">Nom:</label> <input
 								class="form-control" type="text" name="nom" />
