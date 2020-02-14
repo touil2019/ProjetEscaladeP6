@@ -1,22 +1,28 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Topo</title>
 </head>
 <body>
-<div layout:fragment="content">
+	<div layout:fragment="content">
+
+		<div class="container">
+			<form th:action="}">
 		<div class="card col-md-6 container">
 			<div class="card-header">
-				<h3 class="card-title">Information Site</h3>
+				<h3 class="card-title">Information Topo</h3>
 			</div>
 			<div class="card-body">
-				<label>Site:</label> <label th:text="${site.nom}"></label> 
-				<label>Département:</label> <label th:text="${site.departement}"></label>
-				<label>Ville :</label> <label th:text="${site.ville}"></label>
-				<a class="btn btn-primary" th:href="@{/site/{id}/voie/creer(id=${site.id})}">Ajouter
-					une voie </a>
+				<label>Topo:</label> <label th:text="${topo.nom}"></label> 
+				<label>Description:</label> <label th:text="${topo.description}"></label>
+				<label>Disponible:</label> <label th:text="${topo.disponible}"></label>
+				<label>Date</label> <label th:text="${topo.date}"></label>
+				<a class="btn btn-primary" th:href="@{/utilisateur/{id}/
+				topo/creer(id=${utilisateur.id})}">consulter topo </a>
 			</div>
 		</div>
+		</div>
+	
 </body>
-</html>
+</html> -->

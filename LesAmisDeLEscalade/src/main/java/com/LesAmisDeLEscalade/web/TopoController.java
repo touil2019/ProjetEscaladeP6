@@ -1,6 +1,7 @@
 package com.LesAmisDeLEscalade.web;
 
 import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,12 @@ public class TopoController {
 		if (bindingResult.hasErrors()) {
 			return "CreerTopo";
 		}
-		topo.setDate(new Date());
+		
 
 		topoRepository.save(topo);
-
-		return "redirect:/topo";
+		topo.setDate(new Date());
+		model.addAttribute("topo", topo);
+		return "topo";
 	}
 
 	@GetMapping(value = "/topo")
@@ -51,7 +53,7 @@ public class TopoController {
 
 		model.addAttribute("listTopo", listTopo);
 
-		return "topo";
+		return "/topo";
 	}
 
 	@GetMapping(value = "/topo/{id}/supprimer")

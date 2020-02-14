@@ -53,6 +53,15 @@
 					</tr>
 				</tbody>
 			</table>
+			<div>
+				<ul class="nav nav-pills pagination justify-content-center">
+					<li
+						th:class="(${pageCourante}==${status.index}?'page-item active':'page-item')"
+						th:each="pa,status:${pages}"><a class="page-link"
+						th:href="@{/topo(page=${status.index})}" th:text="${status.index}"></a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>
