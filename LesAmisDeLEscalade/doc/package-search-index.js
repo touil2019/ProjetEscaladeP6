@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.LesAmisDeLEscalade"},{"l":"com.LesAmisDeLEscalade.dao"},{"l":"com.LesAmisDeLEscalade.entities"},{"l":"com.LesAmisDeLEscalade.security"},{"l":"com.LesAmisDeLEscalade.web"}]

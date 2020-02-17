@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().loginPage("/login").defaultSuccessUrl("/accueil")
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/site")
 		.failureUrl("/login").usernameParameter("username")
 				.passwordParameter("password")
 				.and()
@@ -47,10 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.sessionManagement().maximumSessions(1)
 				.expiredUrl("/login");
-        http.authorizeRequests().antMatchers("/static/**","/login").permitAll();
+        
 
-        http.authorizeRequests().antMatchers("/add*","/edit*","/delete*","/topo/*","/profil*","/profil/*","/topo/creer").permitAll();
-        http.authorizeRequests().antMatchers("/administration").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("*/creer*","*/save*","*/supprimer").hasRole("USER");
+        
 	}
 	/**
      * this method set the encoder

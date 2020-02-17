@@ -36,12 +36,11 @@
 		<nav class="nav navbar-nav">
 			<ul class="navbar-nav m-auto">
 				<li  class="nav-item active"><a class="btn btn-primary" th:href="@{/site}">Site</a></li>
-				<li class="nav-item"><a class="btn btn-primary" th:href="@{/site/creer}">Ajouter
-						Un Site</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/site/creer}">Ajouter Un Site</a></li>
 				<li class="nav-item"><a class="btn btn-primary" th:href="@{/site/trouver}">Rechercher</a></li>
-				<li class="nav-item"><a class="btn btn-primary" th:href="@{/topo}">Topo</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo}">Topo</a></li>
 				<li class="nav-item"><a class="btn btn-primary" th:href="@{/login}">Connexion</a></li>
-				<li class="nav-item"><a class="btn btn-primary" th:href="@{/profil}">Mon Compte</a></li>
+				<li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/profil}">Mon Compte</a></li>
 			</ul>
 		</nav>
 		</div>

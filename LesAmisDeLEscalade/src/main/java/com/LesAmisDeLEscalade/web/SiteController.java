@@ -33,7 +33,13 @@ public class SiteController {
 
 	@Autowired
 	private LongueurRepository longueurRepository;
-
+/**
+ * 
+ * @param model
+ * @param p
+ * @param s
+ * @return
+ */
 	@RequestMapping(value = "/site")
 	public String site(Model model, 
 			@RequestParam(name = "page", defaultValue = "0") int p,
