@@ -37,12 +37,11 @@ public class TopoController {
 		if (bindingResult.hasErrors()) {
 			return "CreerTopo";
 		}
-		
-
-		topoRepository.save(topo);
+		topo.setDisponible(true);
 		topo.setDate(new Date());
 		model.addAttribute("topo", topo);
-		return "topo";
+		topoRepository.save(topo);
+		return "redirect:/topo";
 	}
 
 	@GetMapping(value = "/topo")

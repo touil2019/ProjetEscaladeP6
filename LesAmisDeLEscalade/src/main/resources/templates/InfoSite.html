@@ -82,29 +82,59 @@
 				<thead>
 					<tr>
 						<th>ID</th>
+						<th>Voie</th>
 						<th>Nom</th>
 						<th>Cotation</th>
 						<th>Hauteur</th>
 						<th>Supprimer</th>
-						<th>Nouvelle voie</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="ll:${listLongueur}">
 						<td th:text="${ll.id}"></td>
+						<td th:text="${ll.voie.nom}"></td>
 						<td th:text="${ll.nom}"></td>
 						<td th:text="${ll.cotation}"></td>
 						<td th:text="${ll.hauteur}"></td>
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/longueur/{id}/supprimer(id=${ll.id})}">supprimer</a></td>
-						<td><<a class="btn btn-primary" th:href="@{/longueur/{id}/voie/save(id=${ll.id})}">Ajouter
-					une voie </a></td>
-					</tr>
+						</tr>
 				</tbody>
 			</table>
 
 		</div>
+		
+	<form  type="richtext" class="card col-md-6  container" method="post" th:ref=" @{/utilisateur/{idURL}/commentaire/creer(id=${lusers.id})}">
+
+   <p>
+
+       <label for="commentaire">
+
+       Laissez votre commentaire
+
+       </label>
+
+       <br />
+
+        
+
+       <textarea  name="commentaire" id="commentaire" rows="10" cols="80">
+
+       Votre avis compte !
+
+       </textarea>      
+
+   </p>
+   
+  <button class="btn btn-primary" style="width:130px" th:ref=" @{/utilisateur/{idURL}/commentaire/save(id=${lusers.id})}">Enregistrer</button>
+  <br/>
+  <button  class="btn btn-primary" style="width:130px" th:ref=" @{/commentairespot/{id}/supprimer(id=${lusers.id})}">Supprimer</button>      
+   
+</form>
+
 	</div>
+	
 </body>
 </html>

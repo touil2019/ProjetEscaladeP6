@@ -32,7 +32,7 @@
 			<div class="panel panel-default">
 				<div class=" panel-heading">Créer une longueur</div>
 				<div class="panel-body">
-					<form th:action="@{/longueur/save}" method="post">
+					<form th:action="@{/voie/{id}/longueur/save(id=${idVoie})}" method="post">
 						<div class="form-group">
 							<label class="control-label">Nom:</label> <input
 								class="form-control" type="text" name="nom" />

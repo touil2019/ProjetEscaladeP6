@@ -27,9 +27,11 @@ public class VoieController {
 
 	@GetMapping(value = "/voie/{id}/supprimer")
 	public String supprimerVoie(Model model, @PathVariable(value = "id") Long id) {
-
+		
+		Voie voie = voieRepository.findById(id).get();
+		Long idSite = voie.getSite().getId();
 		voieRepository.deleteById(id);
-		return "redirect:/site";
+		return "redirect:/site/"+idSite+"/infoSite";
 	}
 
 	@RequestMapping(value = "/site/{id}/voie/creer", method = RequestMethod.GET)

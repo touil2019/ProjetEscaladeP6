@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.sessionManagement().maximumSessions(1)
 				.expiredUrl("/login");
-        http.authorizeRequests().antMatchers("/static/**").permitAll();
+        http.authorizeRequests().antMatchers("/static/**","/login").permitAll();
 
         http.authorizeRequests().antMatchers("/add*","/edit*","/delete*","/topo/*","/profil*","/profil/*","/topo/creer").permitAll();
         http.authorizeRequests().antMatchers("/administration").hasRole("ADMIN");

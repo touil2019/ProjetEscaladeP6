@@ -1,7 +1,5 @@
 package com.LesAmisDeLEscalade.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.LesAmisDeLEscalade.dao.LongueurRepository;
-import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Longueur;
-import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Voie;
 
 @Controller
@@ -27,9 +23,6 @@ public class LongueurController {
 	public LongueurRepository longueurRepository;
 	@Autowired
 	private VoieRepository voieRepository;
-	@Autowired
-	private SiteRepository siteRepository;
-
 	@GetMapping(value = "/longueur/{id}/supprimer")
 	public String supprimerLongueur(Model model, @PathVariable(value = "id") Long id) {
 
@@ -54,13 +47,8 @@ public class LongueurController {
 		Voie voie = voieRepository.findById(id).get();
 		longueur.setVoie(voie);
 		longueurRepository.save(longueur);
-		List<Site> listSite = siteRepository.findAll();
-		model.addAttribute("listSite", listSite);
-		List<Voie> listVoie = voieRepository.findAll();
-		model.addAttribute("listVoie", listVoie);
-		List<Longueur> listLongueur = longueurRepository.findAll();
-		model.addAttribute("listLongueur", listLongueur);
+	
 
-		return "redirect:/site/" + id + "/infoSite";
+		return "redirect:/site/" + voie.getSite().getId() + "/infoSite";
 	}
 }
