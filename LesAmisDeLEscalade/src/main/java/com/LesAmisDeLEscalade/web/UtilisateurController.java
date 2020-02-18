@@ -1,24 +1,17 @@
 package com.LesAmisDeLEscalade.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
-import com.LesAmisDeLEscalade.entities.Longueur;
-import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
-import com.LesAmisDeLEscalade.entities.Voie;
 
 
 @Controller

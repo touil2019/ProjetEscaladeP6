@@ -61,4 +61,17 @@ public class TopoController {
 		topoRepository.deleteById(id);
 		return "redirect:/topo";
 	}
+	
+
+	@RequestMapping(value = "/topo/{id}/infoTopo")
+	public String infoTopo(Model model, @PathVariable(value = "id") Long id,
+			@RequestParam(name = "page", defaultValue = "0") int p,
+			@RequestParam(name = "size", defaultValue = "2") int s) {
+
+	Topo topo = topoRepository.findById(id).get();
+	model.addAttribute("topo",topo);
+	
+					
+		return  "infotopo";
+	}
 }

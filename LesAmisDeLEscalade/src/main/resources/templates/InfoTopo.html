@@ -27,23 +27,18 @@
 </head>
 <body>
 	<div layout:fragment="content">
-
-		<div class="container">
-			<div class="card col-md-6 container">
+		<div class="card col-md-6 container">
 			<div class="card-header">
 				<h3 class="card-title">Information Topo</h3>
 			</div>
 			<div class="card-body">
-				<label>Topo:</label> <label th:text="${topo.nom}"></label> 
-				<label>Description:</label> <label th:text="${topo.description}"></label>
-				<label>Disponible:</label> <label th:text="${topo.disponible}"></label>
-				<label>Date</label> <label th:text="${topo.date}"></label>
-				<a class="btn btn-primary" th:href="@{/utilisateur/{id}/
-				topo/creer(id=${utilisateur.id})}">consulter topo </a>
+				<label>Topo:</label> <label th:text="${topo.nom}"></label>
+				<label>Description:</label><label th:text="${topo.description}"></label>
+				<label>Disponible:</label><label th:text="${topo.disponible}"></label>
+				<label>Date:</label><label th:text="${topo.date}"></label>
+				
 			</div>
 		</div>
-		</div>
-		</div>
-	
+	</div>
 </body>
 </html>
