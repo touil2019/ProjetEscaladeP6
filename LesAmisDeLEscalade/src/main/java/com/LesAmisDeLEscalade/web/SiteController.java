@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.LesAmisDeLEscalade.dao.CommentaireSpotRepository;
 import com.LesAmisDeLEscalade.dao.LongueurRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
+import com.LesAmisDeLEscalade.entities.Commentaire;
 import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Voie;
@@ -33,6 +35,9 @@ public class SiteController {
 
 	@Autowired
 	private LongueurRepository longueurRepository;
+	
+	@Autowired
+	private CommentaireSpotRepository commentaireSpotRepository;
 /**
  * 
  * @param model
@@ -127,7 +132,10 @@ public class SiteController {
 		
 		List<Longueur> listLongueur = longueurRepository.listeDeLongueurParSite(id);
 		model.addAttribute("listLongueur", listLongueur);
-
+		
+		List<Commentaire> listCommentaire= commentaireSpotRepository.listeDeCommentaireParSite(id);
+		model.addAttribute("listCommentaire", listCommentaire);
+		
 		return "infoSite";
 	}
 	

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.LesAmisDeLEscalade.dao.CommentaireSpotRepository;
+import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
 import com.LesAmisDeLEscalade.entities.Commentaire;
+import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
 
 @Controller
@@ -23,6 +25,8 @@ public class CommentaireSpotController {
 	public CommentaireSpotRepository commentairespotRepository;
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	@Autowired
+	private SiteRepository siteRepository;
 	
 	@GetMapping(value = "/commentairespot/{id}/supprimer")
 	public String supprimerCommentaire(Model model, @PathVariable(value = "id") Long id) {
@@ -51,7 +55,9 @@ public class CommentaireSpotController {
 			return "InfoSite";
 		}
 		Utilisateur utilisateur= utilisateurRepository.findById(id).get();
+		Site site = siteRepository.findById(id).get();
 		commentaire.setUtilisateur(utilisateur);
+		commentaire.setSite(site);
 		commentairespotRepository.save(commentaire);
 		
 		return "redirect:/site/"+id+"/infoSite";
