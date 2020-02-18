@@ -36,9 +36,7 @@
 						<h4 class="card-title text-center mb-4 mt-1">Connexion</h4>
 						<hr />
 						<form th:action="@{/login}" method="post">
-							<fieldset>
-								<div class="card-footer">
-									<div class="d-flex justify-content-center" >
+								<div class="d-flex justify-content-center" >
 										<div class="form-group">
 										<label for="username">Username</label> <input class="form-control" type="text"
 											id="username" name="username" placeholder="username"
@@ -50,15 +48,13 @@
 												id="password" name="password" placeholder="password"
 												required="required" />
 												</div>
-												
 											</div>
-								</div>
-								<hr />
-								<div>
+										<hr />	
+								
 									<div class="d-flex justify-content-center ">
 										<button type="submit" class="btn btn-primary btn-block"> Se Connecter</button>
 									</div>
-								</div>
+								
 								<div class="card-footer">
 									<div class="d-flex justify-content-center links">
 										<a href="/utilisateur/creer">Créer un compte</a>
@@ -66,7 +62,6 @@
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" />
-							</fieldset>
 						</form>
 					</article>
 				</div>

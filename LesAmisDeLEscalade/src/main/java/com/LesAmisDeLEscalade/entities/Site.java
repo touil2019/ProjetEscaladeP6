@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Site implements Serializable {
@@ -33,6 +32,10 @@ public class Site implements Serializable {
 	
 	@OneToMany(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Voie> voies;
+	
+	@OneToMany
+	(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Collection<Commentaire> commentaires;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_utilisateur")
@@ -105,6 +108,14 @@ public class Site implements Serializable {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public Collection<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Commentaire> commentaires) {
+		this.commentaires = commentaires;
 	}
 
 	

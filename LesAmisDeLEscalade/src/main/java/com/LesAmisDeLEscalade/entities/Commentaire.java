@@ -21,7 +21,9 @@ public class Commentaire implements Serializable {
 	@JoinColumn(name = "id_utilisateur")
 	private Utilisateur utilisateur;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "id_Site")
+	private Site site;
 	
 	public Commentaire() {
 		super();
@@ -65,6 +67,14 @@ public class Commentaire implements Serializable {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
 	}
 
 		

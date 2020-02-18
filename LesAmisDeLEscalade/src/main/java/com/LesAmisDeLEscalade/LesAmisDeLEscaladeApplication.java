@@ -171,18 +171,22 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		
 		Commentaire commentaire1= new Commentaire("commentaire", new Date());
 		commentaire1.setUtilisateur(user);
+		commentaire1.setSite(site1);
 		commentaireSpotRepository.save(commentaire1);
 		
 		Commentaire commentaire2= new Commentaire("commentaire", new Date());
 		commentaire2.setUtilisateur(user);
+		commentaire2.setSite(site2);
 		commentaireSpotRepository.save(commentaire2);
 		
 		Commentaire commentaire3= new Commentaire("commentaire", new Date());
 		commentaire3.setUtilisateur(admin);
+		commentaire3.setSite(site3);
 		commentaireSpotRepository.save(commentaire3);
 		
 		Commentaire commentaire4= new Commentaire("commentaire", new Date());
 		commentaire4.setUtilisateur(admin);
+		commentaire4.setSite(site4);
 		commentaireSpotRepository.save(commentaire4);
 	}
 
