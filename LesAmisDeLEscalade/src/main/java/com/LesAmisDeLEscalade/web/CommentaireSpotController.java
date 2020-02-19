@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LesAmisDeLEscalade.dao.CommentaireSpotRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
@@ -28,7 +29,7 @@ public class CommentaireSpotController {
 	@Autowired
 	private SiteRepository siteRepository;
 	
-	@GetMapping(value = "/commentairespot/{id}/supprimer")
+	@GetMapping(value = "/commentaire/{id}/supprimer")
 	public String supprimerCommentaire(Model model, @PathVariable(value = "id") Long id) {
 		
 		Commentaire commentairespot = commentairespotRepository.findById(id).get();
@@ -37,7 +38,7 @@ public class CommentaireSpotController {
 		return "redirect:/site/"+id_utilisateur+"/infoSite";
 	}
 
-	@RequestMapping(value = "/utilisateur/{id}/commentaire/creer", method = RequestMethod.GET)
+	@RequestMapping(value = "/site/{id}/commentaire/creer", method = RequestMethod.GET)
 	public String creerCommentaire(Model model, @PathVariable(value = "id") Long id) {
 		Commentaire commentaire = new Commentaire();
 		model.addAttribute("commentaire", commentaire);
@@ -46,13 +47,13 @@ public class CommentaireSpotController {
 
 	}
 
-	@RequestMapping(value = "/utilisateur/{idURL}/commentaire/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/site/{idURL}/commentaire/save", method = RequestMethod.POST)
 	public String saveCommentaire(Model model, @Valid Commentaire commentaire,
 			@PathVariable(value = "idURL") Long id,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return "InfoSite";
+			return "infoSite";
 		}
 		Utilisateur utilisateur= utilisateurRepository.findById(id).get();
 		Site site = siteRepository.findById(id).get();
@@ -61,6 +62,19 @@ public class CommentaireSpotController {
 		commentairespotRepository.save(commentaire);
 		
 		return "redirect:/site/"+id+"/infoSite";
+	}
+
+	@RequestMapping(value = "/commentaire/{id}/infoSite")
+	public String infoCommentaire(Model model, @PathVariable(value = "id") Long id,
+			@RequestParam(name = "page", defaultValue = "0") int p,
+			@RequestParam(name = "size", defaultValue = "2") int s) {
+
+	Commentaire commentaire = commentairespotRepository.findById(id).get();
+	model.addAttribute("commentaire",commentaire);
+	
+
+		
+		return "infoSite";
 	}
 }
 

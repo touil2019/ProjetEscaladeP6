@@ -40,7 +40,8 @@ public class TopoController {
 		topo.setDisponible(true);
 		topo.setDate(new Date());
 		model.addAttribute("topo", topo);
-		topoRepository.save(topo);
+		
+		
 		return "redirect:/topo";
 	}
 
@@ -52,7 +53,7 @@ public class TopoController {
 
 		model.addAttribute("listTopo", listTopo);
 
-		return "/topo";
+		return "topo";
 	}
 
 	@GetMapping(value = "/topo/{id}/supprimer")

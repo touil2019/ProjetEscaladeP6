@@ -106,7 +106,7 @@
 
 		</div>
 		
-	<form  type="richtext" class="card col-md-6  container" method="post" th:ref=" @{/utilisateur/{idURL}/commentaire/creer(id=${lusers.id})}">
+	<form  type="richtext" class="card col-md-6  container" method="post" th:ref=" @{/commentaire/{id}/creer(id=${lcom.id})}">
 
    <p>
 
@@ -128,12 +128,39 @@
 
    </p>
    
-  <button class="btn btn-primary" style="width:130px" th:ref=" @{/utilisateur/{idURL}/commentaire/save(id=${lusers.id})}">Enregistrer</button>
+  <button class="btn btn-primary" style="width:130px" th:ref=" @{/site/{idURL}/commentaire/save(id=${lcom.id})}">Enregistrer</button>
   <br/>
-  <button  class="btn btn-primary" style="width:130px" th:ref=" @{/commentairespot/{id}/supprimer(id=${lusers.id})}">Supprimer</button>      
+       
    
 </form>
+<hr/>
+		<div class=" card col-md-6 container">
+		
+			<h3>
+				Commentaire 
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>contenu</th>
+						<th>datedeparution</th>
+						<th>Supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="lc:${listCommentaire}">
+						<td th:text="${lc.id}"></td>
+						<td th:text="${lc.contenu}"></td>
+						<td th:text="${lc.datedeparution}"></td>
+						<td><a class="btn btn-primary"
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/commentaire/{id}/supprimer(id=${lc.id})}">supprimer</a></td>
+					</tr>
+				</tbody>
+			</table>
 
+		</div>
 	</div>
 	
 </body>
