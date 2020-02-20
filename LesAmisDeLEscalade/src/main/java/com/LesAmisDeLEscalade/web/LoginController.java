@@ -46,10 +46,6 @@ public class LoginController {
 	   return  "redirect:/site"; }
 	 
 	
-	/*
-	 * @GetMapping(value= "/login") public String login(){
-	 * 
-	 * return "/login"; }
-	 */
+	
 	
 }

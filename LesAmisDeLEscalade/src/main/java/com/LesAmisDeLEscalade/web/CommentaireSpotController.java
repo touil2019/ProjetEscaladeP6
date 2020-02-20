@@ -1,5 +1,7 @@
 package com.LesAmisDeLEscalade.web;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,24 +44,27 @@ public class CommentaireSpotController {
 	public String creerCommentaire(Model model, @PathVariable(value = "id") Long id) {
 		Commentaire commentaire = new Commentaire();
 		model.addAttribute("commentaire", commentaire);
-		model.addAttribute("id_utilisateur", id);
+		model.addAttribute("id_Site", id);
 		return "InfoSite";
 
 	}
 
-	@RequestMapping(value = "/site/{idURL}/commentaire/save", method = RequestMethod.POST)
-	public String saveCommentaire(Model model, @Valid Commentaire commentaire,
-			@PathVariable(value = "idURL") Long id,
+	@RequestMapping(value = "/site/{id}/commentaire/save", method = RequestMethod.POST)
+	public String saveCommentaire(Model model, @Valid String comment,
+			@PathVariable(value = "id") Long id,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			return "infoSite";
 		}
-		Utilisateur utilisateur= utilisateurRepository.findById(id).get();
+		/* Utilisateur utilisateur= utilisateurRepository.findById(id).get(); */
 		Site site = siteRepository.findById(id).get();
-		commentaire.setUtilisateur(utilisateur);
-		commentaire.setSite(site);
-		commentairespotRepository.save(commentaire);
+		Commentaire com = new Commentaire();				
+		com.setDatedeparution(new Date());
+		/* com.setUtilisateur(utilisateur); */
+		com.setSite(site);
+		com.setContenu(comment);
+		commentairespotRepository.save(com);
 		
 		return "redirect:/site/"+id+"/infoSite";
 	}
