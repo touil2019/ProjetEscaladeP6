@@ -37,6 +37,7 @@ public class TopoController {
 		if (bindingResult.hasErrors()) {
 			return "CreerTopo";
 		}
+		
 		topo.setDisponible(true);
 		topo.setDate(new Date());
 		model.addAttribute("topo", topo);

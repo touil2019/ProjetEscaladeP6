@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Commentaire;
 import com.LesAmisDeLEscalade.entities.Longueur;
 import com.LesAmisDeLEscalade.entities.Site;
+import com.LesAmisDeLEscalade.entities.Utilisateur;
 import com.LesAmisDeLEscalade.entities.Voie;
 
 @Controller
@@ -83,15 +85,13 @@ public class SiteController {
 		if (bindingResult.hasErrors()) {
 			return "CreerSite";
 		}
+		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("utilisateur",utilisateur);
+		site.setOfficiel(site.isOfficiel());
+		site.setUtilisateur(utilisateur);
 		siteRepository.save(site);
-		List<Site> listSite = siteRepository.findAll();
-		model.addAttribute("listSite", listSite);
-		List<Voie> listVoie = voieRepository.findAll();
-		model.addAttribute("listVoie", listVoie);
-		List<Longueur> listLongueur = longueurRepository.findAll();
-		model.addAttribute("listLongueur", listLongueur);
-
-		return "site";
+		
+		return "redirect:/site";
 	}
 
 	@GetMapping(value = "/site/trouver")

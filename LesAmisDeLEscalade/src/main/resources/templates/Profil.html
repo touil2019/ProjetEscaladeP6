@@ -29,17 +29,31 @@
 	<div layout:fragment="content" th:if="${#request.userPrincipal != null}">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Information Utilisateur</h3>
+			<h3 class="card-title">Information Utilisateur</h3>
 			</div>
 			<div class="card-body">
-				<label>Utilisateur:</label>
-				<label th:text="${utilisateur.username}"></label> <label>Username:</label>
-				<label th:text="${utilisateur.password}"></label> <label>Password:</label>
-				<label th:text="${utilisateur.firstname}"></label> <label>Firstname:</label>
-				<label th:text="${utilisateur.lastname}"></label> <label>Lastname:</label>
-				<label th:text="${utilisateur.email}"></label> <label>email:</label>
-				
-			</div>
+			<h3>
+				Commentaire 
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>pseudo</th>
+						<th>prénom</th>
+						<th>nom</th>
+						<th>email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="users:${utilisateur}">
+						<td th:text="${users.username}"></td>
+						<td th:text="${users.firstname}"></td>
+						<td th:text="${users.lastname}"></td>
+						<td th:text="${users.email}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		</div>
 	</div>
 </body>

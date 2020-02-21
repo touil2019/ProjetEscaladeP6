@@ -109,7 +109,7 @@
 	
    <p>
    	<div class="card col-md-6  container">
-<form>
+<form method="post" th:action="@{/site/{id}/commentaire/save(id=${site.id})}">
        
        <label for="commentaire">
 
@@ -121,7 +121,7 @@
 
         
 
-       <textarea  name="commentaire" id="commentaire" rows="10" cols="80" maxlength="255">
+       <textarea  name="contenu" rows="10" cols="80" maxlength="255">
 
        Votre avis compte !
 
@@ -129,7 +129,7 @@
 
    </p>
    
-  <button class="btn btn-primary" type="submit" style="width:130px"  method="post" th:action=" @{/site/{id}/commentaire/creer}" >Enregistrer</button>
+  <button class="btn btn-primary" type="submit" style="width:130px">Enregistrer</button>
   <br/>
        
   
@@ -152,7 +152,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="lcom:${listCommentaire}">
-						<td th:text="${lcom.id}"></td>
+						<td th:text="${lcom.utilisateur.username}"></td>
 						<td th:text="${lcom.contenu}"></td>
 						<td th:text="${lcom.datedeparution}"></td>
 						<td><a class="btn btn-primary"

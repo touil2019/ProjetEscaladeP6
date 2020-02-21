@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Site implements Serializable {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_SITE")
@@ -25,6 +26,7 @@ public class Site implements Serializable {
 	private String departement;
 	private String ville;
 
+	private boolean officiel;
 		
 	@OneToMany
 	(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -116,6 +118,14 @@ public class Site implements Serializable {
 
 	public void setCommentaires(Collection<Commentaire> commentaires) {
 		this.commentaires = commentaires;
+	}
+
+	public boolean isOfficiel() {
+		return officiel;
+	}
+
+	public void setOfficiel(boolean officiel) {
+		this.officiel = officiel;
 	}
 
 	
