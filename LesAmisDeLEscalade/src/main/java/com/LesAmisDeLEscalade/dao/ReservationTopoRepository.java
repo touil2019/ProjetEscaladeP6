@@ -12,7 +12,8 @@ import com.LesAmisDeLEscalade.entities.ReservationTopo;
 @Repository
 public interface ReservationTopoRepository extends JpaRepository<ReservationTopo,Long>{
 	
-	@Query("select r from  r where r.topo.utilisateur.id=:id")
-	public List<ReservationTopo> listeDeReservationParUsers(@Param("id") Long id);
-
+	/*
+	 * @Query("select r from ReservationTopo r where r.topo.utilisateur.id=:id") 
+	 * public List<ReservationTopo> listeDeReservationRecuesParUsers(@Param("id") Long id);
+	 */
 }

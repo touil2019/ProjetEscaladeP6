@@ -35,8 +35,9 @@
 				<label>Site:</label> <label th:text="${site.nom}"></label> 
 				<label>Département:</label> <label th:text="${site.departement}"></label>
 				<label>Ville :</label> <label th:text="${site.ville}"></label>
-				<a class="btn btn-primary" th:href="@{/site/{id}/voie/creer(id=${site.id})}">Ajouter
-					une voie </a>
+				<a class="btn btn-primary float-right" th:if="${#request.userPrincipal != null}"
+				th:href="@{/site/{id}/voie/creer(id=${site.id})}">
+				Ajouter une voie </a>
 			</div>
 		</div>
 		<hr/>
@@ -107,34 +108,18 @@
 		</div>
 		
 	
-   <p>
+ 
    	<div class="card col-md-6  container">
-<form method="post" th:action="@{/site/{id}/commentaire/save(id=${site.id})}">
-       
-       <label for="commentaire">
-
-       Laissez votre commentaire
-
-       </label>
-
-       <br />
-
-        
-
-       <textarea  name="contenu" rows="10" cols="80" maxlength="255">
-
-       Votre avis compte !
-
-       </textarea>      
-
-   </p>
-   
-  <button class="btn btn-primary" type="submit" style="width:130px">Enregistrer</button>
-  <br/>
-       
-  
-</form>
-</div>
+		<form method="post" th:action="@{/site/{id}/commentaire/save(id=${site.id})}">
+	       <label>Laissez votre commentaire:</label>
+	       <br/>
+			<label for="zonedecommentaire">Votre avis compte !</label>
+	       <textarea id="zonedecommentaire" name="contenu"
+	       rows="10" cols="80" maxlength="255" placeholder=""></textarea>    
+	  		<button class="btn btn-primary" type="submit" style="width:130px">Enregistrer</button>
+	  		<br/>
+		</form>
+	</div>
 <hr/>
 		<div class=" card col-md-6 container">
 		
@@ -146,7 +131,7 @@
 					<tr>
 						<th>ID</th>
 						<th>contenu</th>
-						<th>datedeparution</th>
+						<th>date de parution</th>
 						<th>Supprimer</th>
 					</tr>
 				</thead>

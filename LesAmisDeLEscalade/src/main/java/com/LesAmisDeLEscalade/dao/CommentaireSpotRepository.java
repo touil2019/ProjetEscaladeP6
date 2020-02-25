@@ -12,7 +12,7 @@ import com.LesAmisDeLEscalade.entities.Commentaire;
 @Repository
 public interface CommentaireSpotRepository extends JpaRepository<Commentaire,Long> {
 	
-	@Query("select c from Commentaire c where c.site.utilisateur.id=:id")
+	@Query("select c from Commentaire c where c.site.id=:id")
 	public List<Commentaire> listeDeCommentaireParSite(@Param("id") Long id);
 
 }

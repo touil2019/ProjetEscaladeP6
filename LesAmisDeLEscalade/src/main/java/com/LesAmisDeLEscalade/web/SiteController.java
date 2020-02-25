@@ -98,19 +98,16 @@ public class SiteController {
 	public String trouverSite(Model model,
 
 			@RequestParam(name = "page", defaultValue = "0") int p,
-			@RequestParam(name = "size", defaultValue = "2") int s,
+			@RequestParam(name = "size", defaultValue = "4") int s,
 			@RequestParam(name = "motCle", defaultValue = "") String mc) {
 		if (!mc.isBlank()) {
 			Page<Site> pageSites = siteRepository.chercher("%" + mc + "%", PageRequest.of(p, s));
-
 			model.addAttribute("listSite", pageSites.getContent());
 			int[] pages = new int[pageSites.getTotalPages()];
 			model.addAttribute("pages", pages);
 			model.addAttribute("size", s);
 			model.addAttribute("pageCourante", p);
 			model.addAttribute("motCle", mc);
-			List<Voie> listVoie = voieRepository.findAll();
-			model.addAttribute("listVoie", listVoie);
 			return "site";
 		}
 

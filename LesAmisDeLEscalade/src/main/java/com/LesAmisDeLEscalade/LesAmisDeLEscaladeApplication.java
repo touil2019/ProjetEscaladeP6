@@ -169,10 +169,15 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		topo4.setSite(site2);
 		topoRepository.save(topo4);		
 		
-		Commentaire commentaire1= new Commentaire("commentaire", new Date());
+		Commentaire commentaire1= new Commentaire("commentaire1", new Date());
 		commentaire1.setUtilisateur(user);
 		commentaire1.setSite(site1);
 		commentaireSpotRepository.save(commentaire1);
+		
+		Commentaire commentaire5= new Commentaire("commentaire2", new Date());
+		commentaire5.setUtilisateur(admin);
+		commentaire5.setSite(site1);
+		commentaireSpotRepository.save(commentaire5);
 		
 		Commentaire commentaire2= new Commentaire("commentaire", new Date());
 		commentaire2.setUtilisateur(user);
