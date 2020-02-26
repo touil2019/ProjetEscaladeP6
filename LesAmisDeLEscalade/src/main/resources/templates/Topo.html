@@ -52,7 +52,7 @@
 						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
 						<td><a class="btn btn-primary"
 							th:if="${#request.userPrincipal != null}"
-							sec:authorize="hasRole('ROLE_ADMIN')" 
+							 
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/topo/{id}/supprimer (id=${lto.id})}">supprimer</a></td>
 					</tr>
