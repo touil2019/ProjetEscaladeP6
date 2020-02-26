@@ -11,12 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.LesAmisDeLEscalade.dao.CommentaireSpotRepository;
 import com.LesAmisDeLEscalade.dao.LongueurRepository;
+import com.LesAmisDeLEscalade.dao.ReservationTopoRepository;
 import com.LesAmisDeLEscalade.dao.SiteRepository;
 import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
 import com.LesAmisDeLEscalade.dao.VoieRepository;
 import com.LesAmisDeLEscalade.entities.Commentaire;
 import com.LesAmisDeLEscalade.entities.Longueur;
+import com.LesAmisDeLEscalade.entities.ReservationTopo;
 import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Topo;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
@@ -38,6 +40,8 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 	private TopoRepository topoRepository;
 	@Autowired
 	private CommentaireSpotRepository commentaireSpotRepository;
+	@Autowired
+	private ReservationTopoRepository reservationTopoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(LesAmisDeLEscaladeApplication.class, args);
@@ -151,28 +155,25 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 
 		Topo topo1= new Topo("Saint-Pierre","cadre accueillant",true,new Date());
 		topo1.setUtilisateur(admin);
-		topo1.setSite(site4);
 		topoRepository.save(topo1);
 		
 		Topo topo2= new Topo("Croix Rouge","lieu ensoleillé",true,new Date());
 		topo2.setUtilisateur(admin);
-		topo2.setSite(site3);
 		topoRepository.save(topo2);
 		
 		Topo topo3= new Topo("Maripasoula","plage vierge",true,new Date());
 		topo3.setUtilisateur(user);
-		topo3.setSite(site1);
 		topoRepository.save(topo3);
 		
 		Topo topo4= new Topo("Bois de Nèfles","ballade buccolique",true,new Date());
 		topo4.setUtilisateur(user);
-		topo4.setSite(site2);
 		topoRepository.save(topo4);		
 		
 		Commentaire commentaire1= new Commentaire("commentaire1", new Date());
 		commentaire1.setUtilisateur(user);
 		commentaire1.setSite(site1);
 		commentaireSpotRepository.save(commentaire1);
+	
 		
 		Commentaire commentaire5= new Commentaire("commentaire2", new Date());
 		commentaire5.setUtilisateur(admin);
@@ -193,6 +194,32 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		commentaire4.setUtilisateur(admin);
 		commentaire4.setSite(site4);
 		commentaireSpotRepository.save(commentaire4);
+		
+		ReservationTopo reservationTopo1= new ReservationTopo(new Date(),true,false,false);
+		reservationTopo1.setTopo(topo3);
+		reservationTopo1.setDateemprunt(new Date());
+		reservationTopo1.setUtilisateur(user);
+		reservationTopoRepository.save(reservationTopo1);
+		
+		
+		ReservationTopo reservationTopo2= new ReservationTopo(new Date(),true,false,false);
+		reservationTopo2.setTopo(topo4);
+		reservationTopo2.setDateemprunt(new Date());
+		reservationTopo2.setUtilisateur(user);
+		reservationTopoRepository.save(reservationTopo2);
+		
+		ReservationTopo reservationTopo3= new ReservationTopo(new Date(),false,true,false);
+		reservationTopo3.setTopo(topo1);
+		reservationTopo3.setDateemprunt(new Date());
+		reservationTopo3.setUtilisateur(admin);
+		reservationTopoRepository.save(reservationTopo3);
+		
+		ReservationTopo reservationTopo4= new ReservationTopo(new Date(),false,false,true);
+		reservationTopo4.setTopo(topo2);
+		reservationTopo4.setDateemprunt(new Date());
+		reservationTopo4.setUtilisateur(admin);
+		reservationTopoRepository.save(reservationTopo4);
+		
 	}
 
 }

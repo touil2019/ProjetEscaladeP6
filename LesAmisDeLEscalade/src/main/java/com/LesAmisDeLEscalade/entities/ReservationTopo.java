@@ -16,12 +16,13 @@ public class ReservationTopo implements Serializable {
 	private Date dateemprunt;
 	private boolean encours;
 	private boolean acceptations;
+	private boolean cloturer;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_SITE")
 	private Site site;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "id_topo")
 	private Topo topo;
 	
@@ -33,10 +34,11 @@ public class ReservationTopo implements Serializable {
 		super();
 		
 	}
-	public ReservationTopo(Date dateemprunt, boolean encours, boolean acceptations) {
+	public ReservationTopo(Date dateemprunt, boolean encours, boolean acceptations,boolean cloturer) {
 		this.dateemprunt = dateemprunt;
 		this.encours = encours;
 		this.acceptations = acceptations;
+		this.cloturer=cloturer;
 	}
 	public Long getId() {
 		return id;
@@ -63,6 +65,13 @@ public class ReservationTopo implements Serializable {
 		this.acceptations = acceptations;
 	}
 
+	
+	public boolean isCloturer() {
+		return cloturer;
+	}
+	public void setCloturer(boolean cloturer) {
+		this.cloturer = cloturer;
+	}
 	public Site getSite() {
 		return site;
 	}

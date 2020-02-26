@@ -54,7 +54,7 @@ public class CommentaireSpotController {
 			Utilisateur utilisateur= utilisateurRepository.findById(id).get();
 			model.addAttribute("utilisateur",utilisateur);
 					
-			return "/infoSite";
+			return "infoSite";
 		}
 		
 		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -42,13 +42,21 @@
 									class="form-control" type="text" name="description" />
 							</div>
 							<div class="form-group">
-								<label class="control-label">Disponible:</label> <input
-									class="form-control" type="text" name="disponible" />
+								
+							<div class="form-check">
+							<label class="control-label">Disponible:</label> 
+							<br />
+							<input	class="form-check-input" type="radio" name="disponible"
+									id="exampleRadios1" value="true"> <label
+									class="form-check-label" for="exampleRadios1"> oui </label>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Date:</label> <input
-									class="form-control" type="date" name="date" />
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="disponible"
+									id="exampleRadios2" value="false" checked> <label
+									class="form-check-label" for="exampleRadios2"> non </label>
 							</div>
+							</div>
+							
 							<div>
 								<button type="submit" class="btn btn-primary">Save</button>
 							</div>

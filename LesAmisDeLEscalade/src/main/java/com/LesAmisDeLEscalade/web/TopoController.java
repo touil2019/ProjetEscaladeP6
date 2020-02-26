@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.entities.Topo;
+import com.LesAmisDeLEscalade.entities.Utilisateur;
 
 @Controller
 public class TopoController {
@@ -37,12 +39,12 @@ public class TopoController {
 		if (bindingResult.hasErrors()) {
 			return "CreerTopo";
 		}
-		
+		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		topo.setUtilisateur(utilisateur);
 		topo.setDisponible(true);
 		topo.setDate(new Date());
-		model.addAttribute("topo", topo);
-		
-		
+		topoRepository.save(topo);
+				
 		return "redirect:/topo";
 	}
 
@@ -51,7 +53,8 @@ public class TopoController {
 			@RequestParam(name = "size", defaultValue = "9999") int s) {
 
 		Page<Topo> listTopo = topoRepository.findAll(PageRequest.of(p, s));
-
+		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("utilisateur",utilisateur);
 		model.addAttribute("listTopo", listTopo);
 
 		return "topo";
@@ -76,4 +79,5 @@ public class TopoController {
 					
 		return  "infotopo";
 	}
+	
 }

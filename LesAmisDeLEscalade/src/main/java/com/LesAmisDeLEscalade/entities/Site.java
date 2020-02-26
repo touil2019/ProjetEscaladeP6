@@ -28,10 +28,7 @@ public class Site implements Serializable {
 
 	private boolean officiel;
 		
-	@OneToMany
-	(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Collection<Topo> topos;
-	
+		
 	@OneToMany(mappedBy = "site", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<Voie> voies;
 	
@@ -96,13 +93,7 @@ public class Site implements Serializable {
 		this.ville = ville;
 	}
 
-	public Collection<Topo> getTopos() {
-		return topos;
-	}
 
-	public void setTopos(Collection<Topo> topos) {
-		this.topos = topos;
-	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;

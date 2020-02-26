@@ -51,7 +51,7 @@
 						<td th:text="${lto.disponible}"></td>
 						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
 						<td><a class="btn btn-primary"
-							th:if="${#request.userPrincipal != null}"
+							th:if="${utilisateur.id}==${lto.utilisateur.id}"
 							 
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/topo/{id}/supprimer (id=${lto.id})}">supprimer</a></td>

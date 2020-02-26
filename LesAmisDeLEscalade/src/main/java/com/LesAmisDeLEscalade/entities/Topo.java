@@ -1,13 +1,17 @@
 package com.LesAmisDeLEscalade.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Topo implements Serializable {
@@ -19,15 +23,15 @@ public class Topo implements Serializable {
 	private Date date;
 	private String nom;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_SITE")
-	private Site site;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "id_utilisateur")
 	private Utilisateur utilisateur;
 	
-		
+	@OneToMany
+	(mappedBy = "topo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Collection<ReservationTopo> reservations;
 	
 
 	public Topo() {
@@ -82,13 +86,7 @@ public class Topo implements Serializable {
 		this.nom = nom;
 	}
 
-	public Site getSite() {
-		return site;
-	}
 
-	public void setSite(Site site) {
-		this.site = site;
-	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -98,6 +96,13 @@ public class Topo implements Serializable {
 		this.utilisateur = utilisateur;
 	}
 
+	public Collection<ReservationTopo> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Collection<ReservationTopo> reservations) {
+		this.reservations = reservations;
+	}
 
 
 }

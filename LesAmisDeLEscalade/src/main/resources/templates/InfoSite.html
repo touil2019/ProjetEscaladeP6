@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="htpp://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout}"
-	xmlns: sec = " http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+	layout:decorate="~{layout}" xmlns:
+	sec=" http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 <head>
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -31,24 +31,6 @@
 		<div class="card col-md-6 container">
 			<div class="card-header">
 				<h3 class="card-title">Information Site</h3>
-				<div sec:authorize="hasRole('ROLE_ADMIN')" >
-				<div class="form-check">
-					<label class="control-label" >Taguer le site:</label> <br /> <input
-						class="form-check-input" type="radio" name="officiel"
-						id="exampleRadios1" value="true"> <label
-						class="form-check-label" for="exampleRadios1"> oui </label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="officiel"
-						id="exampleRadios2" value="false" checked> <label
-						class="form-check-label" for="exampleRadios2"> non </label>
-				</div>
-				
-				<div>
-					<button th:if="${#request.userPrincipal != null}" type="submit"
-						class="btn btn-primary">Save</button>
-				</div>
-				</div>
 			</div>
 			<div class="card-body">
 				<label>Site : </label><label th:text="${site.nom}"></label>
@@ -57,10 +39,31 @@
 				<hr />
 				<label>Ville : </label><label th:text="${site.ville}"></label>
 				<hr />
-				<a class="btn btn-primary float-right"
-					th:if="${#request.userPrincipal != null}"
-					th:href="@{/site/{id}/voie/creer(id=${site.id})}"> Ajouter une
-					voie </a>
+				<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<form th:action="@{/site/save}" method="post">
+					<div class="form-check">
+						<label class="control-label">Taguer le site:</label> <br /> <input
+							class="form-check-input" type="radio" name="officiel"
+							id="exampleRadios1" value="true"> <label
+							class="form-check-label" for="exampleRadios1"> oui </label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="officiel"
+							id="exampleRadios2" value="false" checked> <label
+							class="form-check-label" for="exampleRadios2"> non </label>
+					</div>
+					<br />
+					<div>
+						<button th:if="${#request.userPrincipal != null}" type="submit"
+							class="btn btn-primary">Save</button>
+						<a class="btn btn-primary float-right"
+							th:if="${#request.userPrincipal != null}"
+							th:href="@{/site/{id}/voie/creer(id=${site.id})}"> Ajouter
+							une voie </a>
+					</div>
+					</form>
+				</div>
+
 			</div>
 
 		</div>
@@ -77,8 +80,9 @@
 						<th>Secteur</th>
 						<th>Cotation</th>
 						<th>Hauteur</th>
-						<th>Supprimer</th>
-						<th>Nouvelle longueur</th>
+						<th th:if="${#request.userPrincipal != null}">Supprimer</th>
+						<th th:if="${#request.userPrincipal != null}">Nouvelle
+							longueur</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,11 +92,12 @@
 						<td th:text="${lv.secteur}"></td>
 						<td th:text="${lv.cotation}"></td>
 						<td th:text="${lv.hauteur}"></td>
-						<td><a class="btn btn-primary"
+						<td th:if="${#request.userPrincipal != null}"><a
+							class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
-						<td><a class="btn btn-primary"
-							th:if="${#request.userPrincipal != null}"
+						<td th:if="${#request.userPrincipal != null}"><a
+							class="btn btn-primary"
 							th:href="@{/voie/{id}/longueur/creer(id=${lv.id})}">Ajouter
 								une longueur </a></td>
 					</tr>
@@ -111,7 +116,7 @@
 						<th>Nom</th>
 						<th>Cotation</th>
 						<th>Hauteur</th>
-						<th>Supprimer</th>
+						<th th:if="${#request.userPrincipal != null}">Supprimer</th>
 
 					</tr>
 				</thead>
@@ -122,8 +127,8 @@
 						<td th:text="${ll.nom}"></td>
 						<td th:text="${ll.cotation}"></td>
 						<td th:text="${ll.hauteur}"></td>
-						<td><a class="btn btn-primary"
-							th:if="${#request.userPrincipal != null}"
+						<td th:if="${#request.userPrincipal != null}"><a
+							class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/longueur/{id}/supprimer(id=${ll.id})}">supprimer</a></td>
 					</tr>
@@ -134,21 +139,21 @@
 
 
 
-		<div class="card col-md-6  container">
+		<div class="card col-md-6  container"
+			th:if="${#request.userPrincipal != null}">
 			<form method="post"
 				th:action="@{/site/{id}/commentaire/save(id=${site.id})}">
 				<label>Laissez votre commentaire:</label> <br /> <label
 					for="zonedecommentaire">Votre avis compte !</label>
 				<textarea id="zonedecommentaire" name="contenu" rows="10" cols="80"
 					maxlength="255" placeholder=""></textarea>
-				<button class="btn btn-primary"
-					th:if="${#request.userPrincipal != null}" type="submit"
-					style="width: 130px">Enregistrer</button>
+				<button class="btn btn-primary" type="submit" style="width: 130px">Enregistrer</button>
 				<br />
 			</form>
 		</div>
 		<hr />
-		<div class=" card col-md-6 container">
+		<div class=" card col-md-6 container"
+			th:if="${#request.userPrincipal != null}">
 
 			<h3>Commentaire</h3>
 			<table class="table">
