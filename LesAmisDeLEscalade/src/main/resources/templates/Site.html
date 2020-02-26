@@ -40,11 +40,11 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>Utilisateur</th>
 						<th>nom</th>
 						<th>département</th>
 						<th>ville</th>
-						<th>supprimer</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -55,9 +55,7 @@
 						</td>
 						<td th:text="${ls.departement}"></td>
 						<td th:text="${ls.ville}"></td>
-						<td><a class="btn btn-primary"
-							onclick="return confirm('Etes vous sûre?')"
-							th:href="@{/site/{id}/supprimer(id=${ls.id})}">supprimer</a></td>
+						
 					</tr>
 				</tbody>
 			</table>

@@ -29,7 +29,7 @@
 	<div layout:fragment="content" >
 		<div class="container">
 			<h3>ListeTopo</h3>
-			<a class="btn btn-primary" th:href="@{/topo/creer}">Formulaire</a>
+			<a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo/creer}">Formulaire</a>
 			<table class="table">
 				<thead>
 					<tr>
@@ -48,6 +48,7 @@
 						<td th:text="${lto.disponible}"></td>
 						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
 						<td><a class="btn btn-primary"
+							th:if="${#request.userPrincipal != null}"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/topo/{id}/supprimer (id=${lto.id})}">supprimer</a></td>
 					</tr>

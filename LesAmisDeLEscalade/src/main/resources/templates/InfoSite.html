@@ -30,22 +30,41 @@
 		<div class="card col-md-6 container">
 			<div class="card-header">
 				<h3 class="card-title">Information Site</h3>
+				<div class="form-check">
+					<label class="control-label">Taguer le site:</label> <br /> <input
+						class="form-check-input" type="radio" name="officiel"
+						id="exampleRadios1" value="true"> <label
+						class="form-check-label" for="exampleRadios1"> oui </label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="officiel"
+						id="exampleRadios2" value="false" checked> <label
+						class="form-check-label" for="exampleRadios2"> non </label>
+				</div>
+				<div>
+					<button th:if="${#request.userPrincipal != null}" type="submit"
+						class="btn btn-primary">Save</button>
+				</div>
 			</div>
 			<div class="card-body">
-				<label>Site:</label> <label th:text="${site.nom}"></label> 
-				<label>Département:</label> <label th:text="${site.departement}"></label>
-				<label>Ville :</label> <label th:text="${site.ville}"></label>
-				<a class="btn btn-primary float-right" th:if="${#request.userPrincipal != null}"
-				th:href="@{/site/{id}/voie/creer(id=${site.id})}">
-				Ajouter une voie </a>
+				<label>Site: </label><label th:text="${site.nom}"></label>
+				<hr />
+				<label>Département: </label><label th:text="${site.departement}"></label>
+				<hr />
+				<label>Ville : </label><label th:text="${site.ville}"></label>
+				<hr />
+				<a class="btn btn-primary float-right"
+					th:if="${#request.userPrincipal != null}"
+					th:href="@{/site/{id}/voie/creer(id=${site.id})}"> Ajouter une
+					voie </a>
 			</div>
+
 		</div>
-		<hr/>
+
+		<hr />
 		<div class=" card col-md-6 container">
-		
-			<h3>
-				ListeVoie 
-			</h3>
+
+			<h3>ListeVoie</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -68,17 +87,18 @@
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td>
-						<td><a class="btn btn-primary" th:href="@{/voie/{id}/longueur/creer(id=${lv.id})}">Ajouter une longueur </a></td>
+						<td><a class="btn btn-primary"
+							th:if="${#request.userPrincipal != null}"
+							th:href="@{/voie/{id}/longueur/creer(id=${lv.id})}">Ajouter
+								une longueur </a></td>
 					</tr>
 				</tbody>
 			</table>
 
 		</div>
-		<hr/>
+		<hr />
 		<div class="card col-md-6  container">
-			<h3>
-				ListeLongueur 
-			</h3>
+			<h3>ListeLongueur</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -88,7 +108,7 @@
 						<th>Cotation</th>
 						<th>Hauteur</th>
 						<th>Supprimer</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>
@@ -99,37 +119,38 @@
 						<td th:text="${ll.cotation}"></td>
 						<td th:text="${ll.hauteur}"></td>
 						<td><a class="btn btn-primary"
+							th:if="${#request.userPrincipal != null}"
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/longueur/{id}/supprimer(id=${ll.id})}">supprimer</a></td>
-						</tr>
+					</tr>
 				</tbody>
 			</table>
 
 		</div>
-		
-	
- 
-   	<div class="card col-md-6  container">
-		<form method="post" th:action="@{/site/{id}/commentaire/save(id=${site.id})}">
-	       <label>Laissez votre commentaire:</label>
-	       <br/>
-			<label for="zonedecommentaire">Votre avis compte !</label>
-	       <textarea id="zonedecommentaire" name="contenu"
-	       rows="10" cols="80" maxlength="255" placeholder=""></textarea>    
-	  		<button class="btn btn-primary" type="submit" style="width:130px">Enregistrer</button>
-	  		<br/>
-		</form>
-	</div>
-<hr/>
+
+
+
+		<div class="card col-md-6  container">
+			<form method="post"
+				th:action="@{/site/{id}/commentaire/save(id=${site.id})}">
+				<label>Laissez votre commentaire:</label> <br /> <label
+					for="zonedecommentaire">Votre avis compte !</label>
+				<textarea id="zonedecommentaire" name="contenu" rows="10" cols="80"
+					maxlength="255" placeholder=""></textarea>
+				<button class="btn btn-primary"
+					th:if="${#request.userPrincipal != null}" type="submit"
+					style="width: 130px">Enregistrer</button>
+				<br />
+			</form>
+		</div>
+		<hr />
 		<div class=" card col-md-6 container">
-		
-			<h3>
-				Commentaire 
-			</h3>
+
+			<h3>Commentaire</h3>
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>Utilisateur</th>
 						<th>contenu</th>
 						<th>date de parution</th>
 						<th>Supprimer</th>
@@ -142,6 +163,7 @@
 						<td th:text="${lcom.datedeparution}"></td>
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
+							th:if="${#request.userPrincipal != null}"
 							th:href="@{/commentaire/{id}/supprimer(id=${lcom.id})}">supprimer</a></td>
 					</tr>
 				</tbody>
@@ -149,6 +171,6 @@
 
 		</div>
 	</div>
-	
+
 </body>
 </html>
