@@ -17,4 +17,14 @@ public interface ReservationTopoRepository extends JpaRepository<ReservationTopo
 	  public List<ReservationTopo> listeDeReservationRecuesParUsers(@Param("id")
 	  Long id);
 	 
+	/*
+	 * @Query("select r from ReservationTopo r where r.topo.utilisateur.id=:id and r.encours=true and r.cloturer=false and r.acceptations=false"
+	 * ) public List<ReservationTopo>demandeEnCoursParTopo(@Param("id") Long id);
+	 * 
+	 * @Query("select r from ReservationTopor where r.topo.utilisateur.id=:id and r.encours=false and r.cloturer=true and r.acceptations=false"
+	 * ) public List<ReservationTopo>demandeCloturer(@Param("id") Long id);
+	 * 
+	 * @Query("select r from ReservationTopo r where r.topo.utilisateur.id=:id and r.encours=false and r.cloturer=false and r.acceptations=true"
+	 * ) public List<ReservationTopo>demandeAcceptation(@Param("id") Long id);
+	 */
 }

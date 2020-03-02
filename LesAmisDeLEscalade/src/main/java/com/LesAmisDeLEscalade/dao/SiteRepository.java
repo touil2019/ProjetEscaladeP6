@@ -16,6 +16,9 @@ public interface SiteRepository extends JpaRepository<Site,Long>{
 			+ " or lower(s.ville)  like lower(concat('%', :x,'%')) "
 			+ "or lower(s.departement)  like lower(concat('%', :x,'%'))")
 	    public Page<Site> chercher (@Param("x") String mc,Pageable pageable);
+	
+	@Query("select s from Site s order by s.id asc")
+	public Page<Site> listSite(Pageable pageable);
 	 
 	
 

@@ -37,22 +37,22 @@ public class SiteController {
 
 	@Autowired
 	private LongueurRepository longueurRepository;
-	
+
 	@Autowired
 	private CommentaireSpotRepository commentaireSpotRepository;
-/**
- * 
- * @param model
- * @param p
- * @param s
- * @return
- */
+
+	/**
+	 * 
+	 * @param model
+	 * @param p
+	 * @param s
+	 * @return
+	 */
 	@RequestMapping(value = "/site")
-	public String site(Model model, 
-			@RequestParam(name = "page", defaultValue = "0") int p,
+	public String site(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
 			@RequestParam(name = "size", defaultValue = "2") int s) {
 
-		Page<Site> listSite = siteRepository.findAll(PageRequest.of(p, s));
+		Page<Site> listSite = siteRepository.listSite(PageRequest.of(p, s));
 		model.addAttribute("listSite", listSite);
 		List<Voie> listVoie = voieRepository.findAll();
 		model.addAttribute("listVoie", listVoie);
@@ -85,12 +85,11 @@ public class SiteController {
 		if (bindingResult.hasErrors()) {
 			return "CreerSite";
 		}
-		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.addAttribute("utilisateur",utilisateur);
-		site.setOfficiel(site.isOfficiel());
+		Utilisateur utilisateur = (Utilisateur) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("utilisateur", utilisateur);
 		site.setUtilisateur(utilisateur);
 		siteRepository.save(site);
-		
+
 		return "redirect:/site";
 	}
 
@@ -121,24 +120,31 @@ public class SiteController {
 			@RequestParam(name = "page", defaultValue = "0") int p,
 			@RequestParam(name = "size", defaultValue = "2") int s) {
 
-	Site site= siteRepository.findById(id).get();
-	model.addAttribute("site",site);
-	
+		Site site = siteRepository.findById(id).get();
+		model.addAttribute("site", site);
+
 		List<Voie> listVoie = voieRepository.listeDeVoieParSite(id);
 		model.addAttribute("listVoie", listVoie);
-		
+
 		List<Longueur> listLongueur = longueurRepository.listeDeLongueurParSite(id);
 		model.addAttribute("listLongueur", listLongueur);
-		
-		List<Commentaire> listCommentaire= commentaireSpotRepository.listeDeCommentaireParSite(id);
+
+		List<Commentaire> listCommentaire = commentaireSpotRepository.listeDeCommentaireParSite(id);
 		model.addAttribute("listCommentaire", listCommentaire);
-		
+
 		return "infoSite";
 	}
 	
-
-
+	@GetMapping(value = "/site/{id}/officiel")
+	public String siteOfficiel(Model model, @PathVariable(value = "id") Long id) {
+		
+		Site site= siteRepository.findById(id).get();
+		site.setOfficiel(!site.isOfficiel());
+		siteRepository.save(site);
+		
+		
+		return "redirect:/site/" + id + "/infoSite";
+	}
+	 
 
 }
-
-

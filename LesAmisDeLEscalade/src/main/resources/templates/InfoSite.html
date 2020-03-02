@@ -39,34 +39,20 @@
 				<hr />
 				<label>Ville : </label><label th:text="${site.ville}"></label>
 				<hr />
-				<div sec:authorize="hasRole('ROLE_ADMIN')">
-				<form th:action="@{/site/save}" method="post">
-					<div class="form-check">
-						<label class="control-label">Taguer le site:</label> <br /> <input
-							class="form-check-input" type="radio" name="officiel"
-							id="exampleRadios1" value="true"> <label
-							class="form-check-label" for="exampleRadios1"> oui </label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="officiel"
-							id="exampleRadios2" value="false" checked> <label
-							class="form-check-label" for="exampleRadios2"> non </label>
-					</div>
-					<br />
-					<div>
-						<button th:if="${#request.userPrincipal != null}" type="submit"
-							class="btn btn-primary">Save</button>
+				<label>Officiel : </label><label th:text="${site.officiel}"></label>
+				<a class="btn btn-primary float-right"
+							sec:authorize="hasRole('ROLE_ADMIN')"
+							th:href="@{/site/{id}/officiel(id=${site.id})}"> Changer Statut </a>
+				<hr />
 						<a class="btn btn-primary float-right"
 							th:if="${#request.userPrincipal != null}"
 							th:href="@{/site/{id}/voie/creer(id=${site.id})}"> Ajouter
 							une voie </a>
 					</div>
-					</form>
+					
 				</div>
 
-			</div>
-
-		</div>
+			
 
 		<hr />
 		<div class=" card col-md-6 container">
@@ -149,7 +135,7 @@
 					maxlength="255" placeholder=""></textarea>
 				<button class="btn btn-primary" type="submit" style="width: 130px">Enregistrer</button>
 				<br />
-			</form>
+				</form>
 		</div>
 		<hr />
 		<div class=" card col-md-6 container"
@@ -169,17 +155,21 @@
 					<tr th:each="lcom:${listCommentaire}">
 						<td th:text="${lcom.utilisateur.username}"></td>
 						<td th:text="${lcom.contenu}"></td>
-						<td th:text="${lcom.datedeparution}"></td>
+						<td th:text="${#dates.format(lcom.datedeparution, 'dd-MM-yyyy HH:mm')}"></td>
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:if="${#request.userPrincipal != null}"
 							th:href="@{/commentaire/{id}/supprimer(id=${lcom.id})}">supprimer</a></td>
+						<td><a class="btn btn-primary"
+							onclick="return confirm('Etes vous sûre?')"
+							th:if="${#request.userPrincipal != null}"
+							th:href="@{/site/{idSite}/commentaire/{idCom}/edit(idSite=${site.id},idCom=${lcom.id})}">modifier</a></td>
 					</tr>
 				</tbody>
 			</table>
 
 		</div>
-	</div>
-
+	
+</div>
 </body>
 </html>

@@ -44,7 +44,7 @@
 						<th>nom</th>
 						<th>département</th>
 						<th>ville</th>
-						
+						<th>Site Officiel</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -55,7 +55,9 @@
 						</td>
 						<td th:text="${ls.departement}"></td>
 						<td th:text="${ls.ville}"></td>
-						
+						<td >
+						<a th:text="${ls.officiel}" ></a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

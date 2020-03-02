@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LesAmisDeLEscalade.dao.TopoRepository;
+import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
 import com.LesAmisDeLEscalade.entities.Topo;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
 
@@ -26,6 +27,12 @@ public class TopoController {
 
 	@Autowired
 	private TopoRepository topoRepository;
+	
+	
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
+	 
+	
 
 	@RequestMapping(value = "/topo/creer", method = RequestMethod.GET)
 	public String creerTopo(Model model) {
@@ -80,4 +87,23 @@ public class TopoController {
 		return  "infotopo";
 	}
 	
+	
+	  @RequestMapping(value = "/topo/{id}/mesTopos") public String infoTopo(Model
+	  model,@RequestParam(name = "page", defaultValue = "0") int p,
+	  
+	  @RequestParam(name = "size", defaultValue = "9999") int
+	  s, @PathVariable(value = "id") Long id) {
+	  
+	  Utilisateur utilisateur= utilisateurRepository.findById(id).get();
+	  model.addAttribute("utilisateur",utilisateur); Page<Topo> listTopo =
+	  topoRepository.findAll(PageRequest.of(p, s)); model.addAttribute("listTopo",
+	  listTopo); Topo topo = topoRepository.findById(id).get();
+	  model.addAttribute("topo",topo);
+	  
+	  
+	  return "redirect:/topo"+id+"/mesTopos";
+	  
+	  }
+	 
+	 
 }

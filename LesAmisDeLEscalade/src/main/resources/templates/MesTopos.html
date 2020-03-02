@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+	crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<title>Site</title>
+</head>
+<body>
+<head>
+<div layout:fragment="content" >
+		<div class="container">
+			<h3>MesTopos</h3>
+				<table class="table">
+					<tr>
+						<th>nom</th>
+						<th>description</th>
+						<th>disponible</th>
+						<th>date</th>
+						<th>accepter</th>
+					</tr>
+				
+				<tbody>
+					 <tr th:each="mt:${/MesTopos}">
+						 <td><a th:text="${mt.nom}"
+							th:href="@{/MesTopos/{id} (id=${mt.utilisateur.topo.id})}"></a></td>
+						<td th:text="${mt.utilisateur.topo.description}"></td>
+						<td th:text="${mt.utilisateur.topo.disponible}"></td>
+						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
+						<td><a class="btn btn-primary"
+							th:if="${utilisateur.id}==${mt.utilisateur.topo.id}"
+							 
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/MesTopos/{id}/reservationTopoReçue (id=${mt.utilisateur.topo.id})}">accepter</a></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			</div>
+			
+			</head>
+			</body>
+</html>
