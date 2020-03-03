@@ -80,6 +80,8 @@ public class TopoController {
 			@RequestParam(name = "page", defaultValue = "0") int p,
 			@RequestParam(name = "size", defaultValue = "2") int s) {
 
+	Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	model.addAttribute("utilisateur",utilisateur);
 	Topo topo = topoRepository.findById(id).get();
 	model.addAttribute("topo",topo);
 	

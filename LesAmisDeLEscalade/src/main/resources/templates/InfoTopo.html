@@ -38,7 +38,9 @@
 				<label>Date:</label><label th:text="${topo.date}"></label>
 				<label>Propriétaire:</label><label th:text="${topo.utilisateur.username}"></label>
 			</div>
-			<button class="btn btn-primary" type="submit" style="width:130px" >réserver</button>
+			<a class="btn btn-primary" style="width:130px"
+				th:if="${utilisateur.id != topo.utilisateur.id}"
+			 th:href="@{/topo/{id}/reserver(id=${topo.id})}" >réserver</a>
 		</div>
 	</div>
 </body>

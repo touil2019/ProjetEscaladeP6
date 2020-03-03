@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.LesAmisDeLEscalade.entities.Longueur;
 @Repository
 public interface LongueurRepository extends JpaRepository<Longueur,Long> {
+	
 	@Query("select l from Longueur l where l.voie.site.id=:id")
 	public List<Longueur> listeDeLongueurParSite(@Param("id") Long id);
 	

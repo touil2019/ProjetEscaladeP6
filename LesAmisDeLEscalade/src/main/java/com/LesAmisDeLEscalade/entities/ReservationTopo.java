@@ -18,9 +18,7 @@ public class ReservationTopo implements Serializable {
 	private boolean acceptations;
 	private boolean cloturer;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_SITE")
-	private Site site;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "id_topo")
@@ -72,13 +70,7 @@ public class ReservationTopo implements Serializable {
 	public void setCloturer(boolean cloturer) {
 		this.cloturer = cloturer;
 	}
-	public Site getSite() {
-		return site;
-	}
 
-	public void setSite(Site site) {
-		this.site = site;
-	}
 	public Topo getTopo() {
 		return topo;
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.LesAmisDeLEscalade.entities.Voie;
 @Repository
 public interface VoieRepository extends JpaRepository<Voie,Long>{
+	
 	@Query("select v from Voie v where v.site.id=:id")
 	public List<Voie> listeDeVoieParSite(@Param("id") Long id);
 	

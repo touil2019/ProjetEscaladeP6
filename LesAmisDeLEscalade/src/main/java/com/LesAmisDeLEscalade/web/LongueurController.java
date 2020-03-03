@@ -23,6 +23,7 @@ public class LongueurController {
 	public LongueurRepository longueurRepository;
 	@Autowired
 	private VoieRepository voieRepository;
+	
 	@GetMapping(value = "/longueur/{id}/supprimer")
 	public String supprimerLongueur(Model model, @PathVariable(value = "id") Long id) {
 
