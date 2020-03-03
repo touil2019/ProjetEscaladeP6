@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="htpp://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout}">
+	layout:decorate="~{layout}" xmlns:
+	sec=" http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 <head>
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -26,37 +27,38 @@
 <title>Site</title>
 </head>
 <body>
-<head>
-<div layout:fragment="content" >
-		<div class="container">
-			<h3>MesTopos</h3>
+	<div layout:fragment="content">
+		<hr />
+			<div class=" card col-md-6 container">
+				<h3>ListeReservation</h3>
 				<table class="table">
+				<thead>
 					<tr>
-						<th>nom</th>
-						<th>description</th>
-						<th>disponible</th>
-						<th>date</th>
+						<th>ID</th>
+						<!--<th>Nom</th>-->
+						<th>date emprunt</th>
+						<th>en cours</th>
 						<th>accepter</th>
+						<th>cloturer</th>
 					</tr>
-				
+				</thead>
 				<tbody>
-					 <tr th:each="mt:${/MesTopos}">
-						 <td><a th:text="${mt.nom}"
-							th:href="@{/MesTopos/{id} (id=${mt.utilisateur.topo.id})}"></a></td>
-						<td th:text="${mt.utilisateur.topo.description}"></td>
-						<td th:text="${mt.utilisateur.topo.disponible}"></td>
-						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
-						<td><a class="btn btn-primary"
-							th:if="${utilisateur.id}==${mt.utilisateur.topo.id}"
-							 
+					<tr th:each="reservation:${listeDeRes}">
+						<td th:text="${reservation.id}"></td>
+						<!--<td th:text="${lres.nom}"></td>-->
+						<td th:text="${#dates.format(reservation.dateemprunt, 'dd-MM-yyyy HH:mm')}"></td>
+						<td th:text="${reservation.encours}"></td>
+						<td th:text="${reservation.acceptations}"></td>
+						<td th:text="${reservation.cloturer}"></td>
+						<!-- <td th:if="${#request.userPrincipal != null}"><a
+							class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
-							th:href="@{/MesTopos/{id}/reservationTopoReçue (id=${mt.utilisateur.topo.id})}">accepter</a></td>
-					</tr>
+							th:href="@{/voie/{id}/supprimer(id=${lv.id})}">supprimer</a></td> -->
+						</tr>
 				</tbody>
 			</table>
-			</div>
-			</div>
-			
-			</head>
-			</body>
+
+		</div>
+	</div>
+</body>
 </html>

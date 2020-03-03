@@ -14,7 +14,7 @@ public interface ReservationTopoRepository extends JpaRepository<ReservationTopo
 	
 	
 	  @Query("select r from ReservationTopo r where r.topo.utilisateur.id=:id")
-	  public List<ReservationTopo> listeDeReservationRecuesParUsers(@Param("id")
+	  public List<ReservationTopo> listeDeRes(@Param("id")
 	  Long id);
 	 
 	/*
