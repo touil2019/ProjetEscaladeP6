@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.LesAmisDeLEscalade.dao.ReservationTopoRepository;
 import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
-import com.LesAmisDeLEscalade.entities.Commentaire;
 import com.LesAmisDeLEscalade.entities.ReservationTopo;
 import com.LesAmisDeLEscalade.entities.Topo;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
