@@ -11,6 +11,10 @@ import com.LesAmisDeLEscalade.entities.Topo;
 @Repository
 public interface TopoRepository extends JpaRepository<Topo,Long>{
 
-	@Query("select t from Topo t where t.id=:id")
+	@Query("select t from Topo t where t.utilisateur.id=:id")
 	public List<Topo> listeDeTopoParUsers(@Param("id") Long id);
+	
+	@Query("select t from Topo t where t.disponible=true")
+	public List<Topo> listeDeTopoDispo();
+	
 }

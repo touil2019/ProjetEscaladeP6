@@ -26,13 +26,13 @@
 	crossorigin="anonymous"></script>
 	
 <meta charset="UTF-8" />
-<title>Site</title>
+
 </head>
 <body>
 	<div layout:fragment="content" >
 		<div class="container">
 			<h3>ListeTopo</h3>
-			<a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo/creer}">Formulaire</a>
+			<a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo/creer}">Ajouter un Topo</a>
 			<table class="table">
 				<thead>
 					<tr>
@@ -52,7 +52,6 @@
 						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
 						<td><a class="btn btn-primary"
 							th:if="${utilisateur.id}==${lto.utilisateur.id}"
-							 
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/topo/{id}/supprimer (id=${lto.id})}">supprimer</a></td>
 					</tr>

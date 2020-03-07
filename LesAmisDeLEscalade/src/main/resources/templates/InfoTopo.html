@@ -33,15 +33,43 @@
 			</div>
 			<div class="card-body">
 				<label>Topo:</label> <label th:text="${topo.nom}"></label>
+				<p>
 				<label>Description:</label><label th:text="${topo.description}"></label>
+				<p>
 				<label>Disponible:</label><label th:text="${topo.disponible}"></label>
+				<p>
 				<label>Date:</label><label th:text="${topo.date}"></label>
+				<p>
 				<label>Propriétaire:</label><label th:text="${topo.utilisateur.username}"></label>
 			</div>
 			<a class="btn btn-primary" style="width:130px"
 				th:if="${utilisateur.id != topo.utilisateur.id}"
 			 th:href="@{/topo/{id}/reserver(id=${topo.id})}" >réserver</a>
+			 <br/>
+			 	<div class="form-group  float-right">
+								
+							<div class="form-check">
+							<label class="control-label">Disponible:</label> 
+							<br />
+							<input	class="form-check-input" type="radio" name="disponible"
+									id="exampleRadios1" value="true"> <label
+									class="form-check-label" for="exampleRadios1"> oui </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="disponible"
+									id="exampleRadios2" value="false" checked> <label
+									class="form-check-label" for="exampleRadios2"> non </label>
+							</div>
+							<div>
+							<a class="btn btn-primary"
+							th:if="${#request.userPrincipal != null}"
+							th:href="@{/infotopo/{id}/disponible(id=${topo.id})}"> Changer Statut </a>
+							</div>
+							</div>
+							
+							
 		</div>
+		
 	</div>
 </body>
 </html>

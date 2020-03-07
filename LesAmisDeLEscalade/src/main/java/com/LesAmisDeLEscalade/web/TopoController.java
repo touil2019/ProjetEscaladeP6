@@ -1,6 +1,7 @@
 package com.LesAmisDeLEscalade.web;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
+import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Topo;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
 
@@ -56,10 +58,9 @@ public class TopoController {
 	}
 
 	@GetMapping(value = "/topo")
-	public String allTopo(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
-			@RequestParam(name = "size", defaultValue = "9999") int s) {
+	public String allTopo(Model model) {
 
-		Page<Topo> listTopo = topoRepository.findAll(PageRequest.of(p, s));
+		List<Topo> listTopo = topoRepository.listeDeTopoDispo();
 		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.addAttribute("utilisateur",utilisateur);
 		model.addAttribute("listTopo", listTopo);
@@ -88,24 +89,33 @@ public class TopoController {
 					
 		return  "infotopo";
 	}
+	@GetMapping(value = "/infotopo/{id}/disponible")
+	public String topoDisponible(Model model, @PathVariable(value = "id") Long id) {
+		
+		Topo topo= topoRepository.findById(id).get();
+		topo.setDisponible(!topo.isDisponible());
+		topoRepository.save(topo);
+		
+		
+		return "redirect:/topo/" + id + "/infoTopo";
+	}
 	
 	
-	  @RequestMapping(value = "/topo/{id}/mesTopos") public String infoTopo(Model
-	  model,@RequestParam(name = "page", defaultValue = "0") int p,
-	  
-	  @RequestParam(name = "size", defaultValue = "9999") int
-	  s, @PathVariable(value = "id") Long id) {
-	  
-	  Utilisateur utilisateur= utilisateurRepository.findById(id).get();
-	  model.addAttribute("utilisateur",utilisateur); Page<Topo> listTopo =
-	  topoRepository.findAll(PageRequest.of(p, s)); model.addAttribute("listTopo",
-	  listTopo); Topo topo = topoRepository.findById(id).get();
-	  model.addAttribute("topo",topo);
-	  
-	  
-	  return "redirect:/topo"+id+"/mesTopos";
-	  
-	  }
+	@RequestMapping(value = "/topo/{id}/profil")
+	public String mesTopo(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
+
+			@RequestParam(name = "size", defaultValue = "9999") int s, @PathVariable(value = "id") Long id) {
+
+		Utilisateur utilisateur = utilisateurRepository.findById(id).get();
+		model.addAttribute("utilisateur", utilisateur);
+		Page<Topo> listTopo = topoRepository.findAll(PageRequest.of(p, s));
+		model.addAttribute("listTopo", listTopo);
+		Topo topo = topoRepository.findById(id).get();
+		model.addAttribute("topo", topo);
+
+		return "redirect:/topo" + id + "/profil";
+
+	}
 	 
 	 
 }

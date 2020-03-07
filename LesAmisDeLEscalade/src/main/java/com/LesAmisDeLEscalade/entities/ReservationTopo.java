@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 @Entity
 public class ReservationTopo implements Serializable {
 @Id @GeneratedValue
@@ -32,12 +31,14 @@ public class ReservationTopo implements Serializable {
 		super();
 		
 	}
+	
 	public ReservationTopo(Date dateemprunt, boolean encours, boolean acceptations,boolean cloturer) {
 		this.dateemprunt = dateemprunt;
 		this.encours = encours;
 		this.acceptations = acceptations;
 		this.cloturer=cloturer;
 	}
+	
 	public Long getId() {
 		return id;
 	}

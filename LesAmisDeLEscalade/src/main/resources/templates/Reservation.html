@@ -36,10 +36,10 @@
 					<tr>
 						<th>ID</th>
 						<th>Topo</th>
-						<th>date emprunt</th>
-						<th>en cours</th>
-						<th>accepter</th>
-						<th>cloturer</th>
+						<th>Date Emprunt</th>
+						<th>En Cours</th>
+						<th>Accepter</th>
+						<th>Refuser</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,6 +50,35 @@
 						<td th:text="${resaEmise.encours}"></td>
 						<td th:text="${resaEmise.acceptations}"></td>
 						<td th:text="${resaEmise.cloturer}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<hr />
+		<div class=" card col-md-6 container">
+				<h3>Liste des Reservations reçues</h3>
+				<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Topo</th>
+						<th>Date Emprunt</th>
+						<th>Accepter</th>
+						<th>Refuser</th>
+						<th>Contacter<br/> le demandeur</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="resaRecues:${listeDeResaRecues}">
+						<td th:text="${resaRecues.id}"></td>
+						<td th:text="${resaRecues.topo.nom}"></td>
+						<td th:text="${#dates.format(resaRecues.dateemprunt, 'dd-MM-yyyy HH:mm')}"></td>
+						<td><a class="btn btn-success"
+							th:href="@{/reservation/{id}/accepter(id=${resaRecues.id})}">Accepter</a></td>
+						<td><a class="btn btn-danger"
+							th:href="@{/reservation/{id}/refuser(id=${resaRecues.id})}">Refuser</a></td>
+						 <td><a th:text="MAIL" class="btn btn-primary" th:href="'mailto:' + ${resaRecues.utilisateur.email}"></a></td>
 					</tr>
 				</tbody>
 			</table>

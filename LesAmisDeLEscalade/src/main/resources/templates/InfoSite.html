@@ -146,9 +146,10 @@
 				<thead>
 					<tr>
 						<th>Utilisateur</th>
-						<th>contenu</th>
-						<th>date de parution</th>
-						<th>Supprimer</th>
+						<th>Contenu</th>
+						<th>Date de parution</th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')">Supprimer</th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')">Modifier</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -159,10 +160,12 @@
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:if="${#request.userPrincipal != null}"
+							sec:authorize="hasRole('ROLE_ADMIN')"
 							th:href="@{/commentaire/{id}/supprimer(id=${lcom.id})}">supprimer</a></td>
 						<td><a class="btn btn-primary"
 							onclick="return confirm('Etes vous sûre?')"
 							th:if="${#request.userPrincipal != null}"
+							sec:authorize="hasRole('ROLE_ADMIN')"
 							th:href="@{/site/{idSite}/commentaire/{idCom}/edit(idSite=${site.id},idCom=${lcom.id})}">modifier</a></td>
 					</tr>
 				</tbody>
