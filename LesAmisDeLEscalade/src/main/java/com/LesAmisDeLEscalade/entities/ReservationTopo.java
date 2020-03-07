@@ -13,9 +13,8 @@ public class ReservationTopo implements Serializable {
 @Id @GeneratedValue
 	private Long id;
 	private Date dateemprunt;
-	private boolean encours;
 	private boolean acceptations;
-	private boolean cloturer;
+	
 	
 	
 	
@@ -34,9 +33,8 @@ public class ReservationTopo implements Serializable {
 	
 	public ReservationTopo(Date dateemprunt, boolean encours, boolean acceptations,boolean cloturer) {
 		this.dateemprunt = dateemprunt;
-		this.encours = encours;
 		this.acceptations = acceptations;
-		this.cloturer=cloturer;
+		
 	}
 	
 	public Long getId() {
@@ -51,27 +49,13 @@ public class ReservationTopo implements Serializable {
 	public void setDateemprunt(Date dateemprunt) {
 		this.dateemprunt = dateemprunt;
 	}
-	public boolean isEncours() {
-		return encours;
-	}
-	public void setEncours(boolean encours) {
-		this.encours = encours;
-	}
+	
 	public boolean isAcceptations() {
 		return acceptations;
 	}
 	public void setAcceptations(boolean acceptations) {
 		this.acceptations = acceptations;
 	}
-
-	
-	public boolean isCloturer() {
-		return cloturer;
-	}
-	public void setCloturer(boolean cloturer) {
-		this.cloturer = cloturer;
-	}
-
 	public Topo getTopo() {
 		return topo;
 	}

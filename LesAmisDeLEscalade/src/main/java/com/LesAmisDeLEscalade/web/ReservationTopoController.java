@@ -55,9 +55,7 @@ public class ReservationTopoController {
 		Topo topo = topoRepository.getOne(idtopo);
 
 		reservationTopo.setDateemprunt(new Date());
-		reservationTopo.setEncours(true);
 		reservationTopo.setAcceptations(false);
-		reservationTopo.setCloturer(false);
 		reservationTopo.setUtilisateur(utilisateur);
 		reservationTopo.setTopo(topo);
 		reservationtopoRepository.save(reservationTopo);

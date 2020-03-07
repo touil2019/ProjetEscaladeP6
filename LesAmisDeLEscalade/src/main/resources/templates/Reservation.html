@@ -37,9 +37,8 @@
 						<th>ID</th>
 						<th>Topo</th>
 						<th>Date Emprunt</th>
-						<th>En Cours</th>
 						<th>Accepter</th>
-						<th>Refuser</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -47,9 +46,8 @@
 						<td th:text="${resaEmise.id}"></td>
 						<td th:text="${resaEmise.topo.nom}"></td>
 						<td th:text="${#dates.format(resaEmise.dateemprunt, 'dd-MM-yyyy HH:mm')}"></td>
-						<td th:text="${resaEmise.encours}"></td>
 						<td th:text="${resaEmise.acceptations}"></td>
-						<td th:text="${resaEmise.cloturer}"></td>
+						
 					</tr>
 				</tbody>
 			</table>

@@ -46,7 +46,7 @@
 				th:if="${utilisateur.id != topo.utilisateur.id}"
 			 th:href="@{/topo/{id}/reserver(id=${topo.id})}" >réserver</a>
 			 <br/>
-			 	<div class="form-group  float-right">
+			 	<div th:if="${utilisateur.id == topo.utilisateur.id}" class="form-group  float-right">
 								
 							<div class="form-check">
 							<label class="control-label">Disponible:</label> 
@@ -62,7 +62,6 @@
 							</div>
 							<div>
 							<a class="btn btn-primary"
-							th:if="${#request.userPrincipal != null}"
 							th:href="@{/infotopo/{id}/disponible(id=${topo.id})}"> Changer Statut </a>
 							</div>
 							</div>
