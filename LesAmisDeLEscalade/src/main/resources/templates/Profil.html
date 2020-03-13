@@ -27,37 +27,37 @@
 </head>
 <body>
 	<div layout:fragment="content" th:if="${#request.userPrincipal != null}">
-		<div class="card">
-			<div class="card-header">
-			<h3 class="card-title">Information Utilisateur</h3>
-			</div>
-			<div class="card-body">
-			<h3>
-				Commentaire 
-			</h3>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>pseudo</th>
-						<th>prénom</th>
-						<th>nom</th>
-						<th>email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="users:${utilisateur}">
-						<td th:text="${users.username}"></td>
-						<td th:text="${users.firstname}"></td>
-						<td th:text="${users.lastname}"></td>
-						<td th:text="${users.email}"></td>
-					</tr>
-				</tbody>
-			</table>
+	<div  class="container justify-content-center" >
+		<div class="container">
+		
+				<h3 class="card-title">Information Utilisateur</h3>
+		
+		
+			
+				<table class="table">
+					<thead>
+						<tr>
+							<th>pseudo</th>
+							<th>prénom</th>
+							<th>nom</th>
+							<th>email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="users:${utilisateur}">
+							<td th:text="${users.username}"></td>
+							<td th:text="${users.firstname}"></td>
+							<td th:text="${users.lastname}"></td>
+							<td th:text="${users.email}"></td>
+						</tr>
+					</tbody>
+				</table>
+		
 		</div>
-		</div>
-				<div class="container">
+		<div class="container">
 			<h3>Mes topos</h3>
-			<a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo/creer}">Ajouter un Topo</a>
+			<a class="btn btn-primary" th:if="${#request.userPrincipal != null}"
+				th:href="@{/topo/creer}">Ajouter un Topo</a>
 			<table class="table">
 				<thead>
 					<tr>
@@ -69,8 +69,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					 <tr th:each="lto:${listTopo}">
-						 <td><a th:text="${lto.nom}"
+					<tr th:each="lto:${listTopo}">
+						<td><a th:text="${lto.nom}"
 							th:href="@{/topo/{id}/infoTopo (id=${lto.id})}"></a></td>
 						<td th:text="${lto.description}"></td>
 						<td th:text="${lto.disponible}"></td>
@@ -82,6 +82,8 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
 	</div>
+</div>
 </body>
 </html>

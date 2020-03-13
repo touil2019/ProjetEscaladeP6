@@ -38,7 +38,7 @@
 						<th>Topo</th>
 						<th>Date Emprunt</th>
 						<th>Accepter</th>
-						
+						<th>Contacter<br/>le propriétaire</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,7 +47,7 @@
 						<td th:text="${resaEmise.topo.nom}"></td>
 						<td th:text="${#dates.format(resaEmise.dateemprunt, 'dd-MM-yyyy HH:mm')}"></td>
 						<td th:text="${resaEmise.acceptations}"></td>
-						
+						<td><a th:if="${resaEmise.acceptations==true}" th:text="MAIL" class="btn btn-primary" th:href="'mailto:' + ${resaEmise.topo.utilisateur.email}"></a></td>
 					</tr>
 				</tbody>
 			</table>
