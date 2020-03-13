@@ -21,19 +21,33 @@ public class VoieController {
 
 	@Autowired
 	private VoieRepository voieRepository;
-	
+
 	@Autowired
 	private SiteRepository siteRepository;
 
+	/**
+	 * suppression de la voie par l'id avec une correspondance avec l'id du site
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/voie/{id}/supprimer")
 	public String supprimerVoie(Model model, @PathVariable(value = "id") Long id) {
-		
+
 		Voie voie = voieRepository.findById(id).get();
 		Long idSite = voie.getSite().getId();
 		voieRepository.deleteById(id);
-		return "redirect:/site/"+idSite+"/infoSite";
+		return "redirect:/site/" + idSite + "/infoSite";
 	}
 
+	/**
+	 * creation d'une nouvelle voie avec affichage du formulaire
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/site/{id}/voie/creer", method = RequestMethod.GET)
 	public String creerVoie(Model model, @PathVariable(value = "id") Long id) {
 		Voie voie = new Voie();
@@ -43,18 +57,27 @@ public class VoieController {
 
 	}
 
+	/**
+	 * sauvegarde du formulaire de creation de nouvelle voie avec une verification
+	 * de la correspondance des attributs avec la classe voie
+	 * 
+	 * @param model
+	 * @param voie
+	 * @param id
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value = "/site/{idURL}/voie/save", method = RequestMethod.POST)
-	public String saveVoie(Model model, @Valid Voie voie,
-			@PathVariable(value = "idURL") Long id,
+	public String saveVoie(Model model, @Valid Voie voie, @PathVariable(value = "idURL") Long id,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			return "CreerVoie";
 		}
-		Site site= siteRepository.findById(id).get();
+		Site site = siteRepository.findById(id).get();
 		voie.setSite(site);
 		voieRepository.save(voie);
-		
-		return "redirect:/site/"+id+"/infoSite";
+
+		return "redirect:/site/" + id + "/infoSite";
 	}
 }

@@ -10,16 +10,26 @@ import org.springframework.stereotype.Repository;
 import com.LesAmisDeLEscalade.entities.Site;
 
 @Repository
-public interface SiteRepository extends JpaRepository<Site,Long>{
-	
+public interface SiteRepository extends JpaRepository<Site, Long> {
+	/**
+	 * requete sql pour une recherche par mot cle
+	 * 
+	 * @param mc
+	 * @param pageable
+	 * @return
+	 */
 	@Query("select s from Site s  where lower(s.nom) like lower(concat('%', :x,'%'))"
 			+ " or lower(s.ville)  like lower(concat('%', :x,'%')) "
 			+ "or lower(s.departement)  like lower(concat('%', :x,'%'))")
-	    public Page<Site> chercher (@Param("x") String mc,Pageable pageable);
-	
+	public Page<Site> chercher(@Param("x") String mc, Pageable pageable);
+
+	/**
+	 * requete sql pour une liste de site ordonnée par id
+	 * 
+	 * @param pageable
+	 * @return
+	 */
 	@Query("select s from Site s order by s.id asc")
 	public Page<Site> listSite(Pageable pageable);
-	 
-	
 
 }

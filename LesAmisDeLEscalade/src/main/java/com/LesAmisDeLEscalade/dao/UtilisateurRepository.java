@@ -9,7 +9,11 @@ import com.LesAmisDeLEscalade.entities.Utilisateur;
 
 @Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur,Long> {
-	
+	/**
+	 * requete sql pour retourner le username d un utilsateur
+	 * @param username
+	 * @return
+	 */
 	@Query("select u from Utilisateur u where u.username=:username")
 	public Utilisateur findByUsername(@Param("username") String username);
 	

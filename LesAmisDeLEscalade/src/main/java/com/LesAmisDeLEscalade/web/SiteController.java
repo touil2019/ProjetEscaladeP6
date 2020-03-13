@@ -42,6 +42,7 @@ public class SiteController {
 	private CommentaireSpotRepository commentaireSpotRepository;
 
 	/**
+	 * affichage de la liste des sites
 	 * 
 	 * @param model
 	 * @param p
@@ -66,6 +67,13 @@ public class SiteController {
 		return "site";
 	}
 
+	/**
+	 * suppression d un site par l id
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/site/{id}/supprimer")
 	public String supprimerSite(Model model, @PathVariable(value = "id") Long id) {
 
@@ -73,6 +81,12 @@ public class SiteController {
 		return "redirect:/site";
 	}
 
+	/**
+	 * formulaire de creation d un nouveau site
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/site/creer", method = RequestMethod.GET)
 	public String creerSite(Model model) {
 		Site site = new Site();
@@ -80,6 +94,15 @@ public class SiteController {
 		return "CreerSite";
 	}
 
+	/**
+	 * sauvegarder une nouveau site avec verification de la correspondance des
+	 * attributs de la classe site
+	 * 
+	 * @param model
+	 * @param site
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value = "/site/save", method = RequestMethod.POST)
 	public String saveSite(Model model, @Valid Site site, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
@@ -93,6 +116,15 @@ public class SiteController {
 		return "redirect:/site";
 	}
 
+	/**
+	 * rechercher un site par mot cle avec pagination
+	 * 
+	 * @param model
+	 * @param p
+	 * @param s
+	 * @param mc
+	 * @return
+	 */
 	@GetMapping(value = "/site/trouver")
 	public String trouverSite(Model model,
 
@@ -115,6 +147,16 @@ public class SiteController {
 
 	}
 
+	/**
+	 * affichage d'un site par le biais de son id. affichage des voies longueurs et
+	 * commentaires lier à l id du site avec pagination
+	 * 
+	 * @param model
+	 * @param id
+	 * @param p
+	 * @param s
+	 * @return
+	 */
 	@RequestMapping(value = "/site/{id}/infoSite")
 	public String infoSite(Model model, @PathVariable(value = "id") Long id,
 			@RequestParam(name = "page", defaultValue = "0") int p,
@@ -134,17 +176,22 @@ public class SiteController {
 
 		return "infoSite";
 	}
-	
+
+	/**
+	 * declarer un site officiel
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/site/{id}/officiel")
 	public String siteOfficiel(Model model, @PathVariable(value = "id") Long id) {
-		
-		Site site= siteRepository.findById(id).get();
+
+		Site site = siteRepository.findById(id).get();
 		site.setOfficiel(!site.isOfficiel());
 		siteRepository.save(site);
-		
-		
+
 		return "redirect:/site/" + id + "/infoSite";
 	}
-	 
 
 }

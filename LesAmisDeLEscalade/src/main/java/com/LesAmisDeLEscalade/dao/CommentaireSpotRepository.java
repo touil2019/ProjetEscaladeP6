@@ -12,7 +12,11 @@ import com.LesAmisDeLEscalade.entities.Commentaire;
 
 @Repository
 public interface CommentaireSpotRepository extends JpaRepository<Commentaire,Long> {
-	
+	/**
+	 * requete pour un commentaire lier à un site par l id
+	 * @param id
+	 * @return
+	 */
 	@Query("select c from Commentaire c where c.site.id=:id")
 	public List<Commentaire> listeDeCommentaireParSite(@Param("id") Long id);
 

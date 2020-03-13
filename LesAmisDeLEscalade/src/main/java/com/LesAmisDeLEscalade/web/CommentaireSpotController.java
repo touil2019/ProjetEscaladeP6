@@ -41,6 +41,13 @@ public class CommentaireSpotController {
 	@Autowired
 	private LongueurRepository longueurRepository;
 
+	/**
+	 * supprimer des commentaires lier à l id du commentaire
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/commentaire/{id}/supprimer")
 	public String supprimerCommentaire(Model model, @PathVariable(value = "id") Long id) {
 
@@ -50,6 +57,16 @@ public class CommentaireSpotController {
 		return "redirect:/site/" + id_utilisateur + "/infoSite";
 	}
 
+	/**
+	 * sauvegarder des commentaires lier à un site avec verification de la
+	 * correspondance des attributs de la classe commentaire
+	 * 
+	 * @param model
+	 * @param commentaire
+	 * @param id
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value = "/site/{id}/commentaire/save", method = RequestMethod.POST)
 	public String saveCommentaire(Model model, @Valid @ModelAttribute("commentaire") Commentaire commentaire,
 			@PathVariable(value = "id") Long id, BindingResult bindingResult) {
@@ -78,6 +95,16 @@ public class CommentaireSpotController {
 		return "redirect:/site/" + id + "/infoSite";
 	}
 
+	/**
+	 * sauvegarde de la modification d un commantaire utilisateur connecté et
+	 * enregistré lier à l id d un site et d un commentaire
+	 * 
+	 * @param model
+	 * @param commentaire
+	 * @param idCom
+	 * @param idSite
+	 * @return
+	 */
 	@RequestMapping(value = "/site/{idSite}/commentaire/{idCom}/edit/save", method = RequestMethod.POST)
 
 	public String saveEditCommentaire(Model model, @Valid Commentaire commentaire,
@@ -109,6 +136,14 @@ public class CommentaireSpotController {
 
 	}
 
+	/**
+	 * formulaire de modification d'un commentaire
+	 * 
+	 * @param model
+	 * @param idCom
+	 * @param idSite
+	 * @return
+	 */
 	@RequestMapping(value = "/site/{idSite}/commentaire/{idCom}/edit", method = RequestMethod.GET)
 	public String editCommentaire(Model model, @PathVariable(value = "idCom") Long idCom,
 			@PathVariable(value = "idSite") Long idSite) {

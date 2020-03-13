@@ -44,33 +44,35 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 	private CommentaireSpotRepository commentaireSpotRepository;
 	@Autowired
 	private ReservationTopoRepository reservationTopoRepository;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(LesAmisDeLEscaladeApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
+
 	}
-	
+
+	/**
+	 * au lancement de l application generation des donnees en db
+	 */
 	@PostConstruct
 	public void postConstruct() {
-		
-		Utilisateur user = new Utilisateur("user","user","user","user","user1@gmail.com");
-		Set<RoleEnum> userRole =new HashSet<>();
+
+		Utilisateur user = new Utilisateur("user", "user", "user", "user", "user1@gmail.com");
+		Set<RoleEnum> userRole = new HashSet<>();
 		userRole.add(RoleEnum.ROLE_USER);
-        user.setRoles(userRole);
+		user.setRoles(userRole);
 		utilisateurRepository.save(user);
-		
-		Utilisateur admin = new Utilisateur("admin","admin","admin","admin","admin1@gmail.com");
-		Set<RoleEnum> adminRole =new HashSet<>();
+
+		Utilisateur admin = new Utilisateur("admin", "admin", "admin", "admin", "admin1@gmail.com");
+		Set<RoleEnum> adminRole = new HashSet<>();
 		adminRole.add(RoleEnum.ROLE_USER);
-        adminRole.add(RoleEnum.ROLE_ADMIN);
-        admin.setRoles(adminRole);
+		adminRole.add(RoleEnum.ROLE_ADMIN);
+		admin.setRoles(adminRole);
 		utilisateurRepository.save(admin);
-		
+
 		Site site1 = new Site("le pic de dante", "Guyane", "Maripasoula");
 		site1.setUtilisateur(user);
 		siteRepository.save(site1);
@@ -82,7 +84,7 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		Site site3 = new Site("le pic rouge", "Mayotte", "Mamoudzou");
 		site3.setUtilisateur(admin);
 		siteRepository.save(site3);
-		
+
 		Site site4 = new Site("Saint-Pierre", "Guadeloupe", "Pointe-à-Pitre");
 		site4.setUtilisateur(admin);
 		siteRepository.save(site4);
@@ -118,7 +120,7 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		Longueur longueur2 = new Longueur("Boucle sable blanc", 200, "4B");
 		longueur2.setVoie(voie1);
 		longueurRepository.save(longueur2);
-		
+
 		Longueur longueur3 = new Longueur("Boucle de la clairiere", 400, "4C");
 		longueur3.setVoie(voie2);
 		longueurRepository.save(longueur3);
@@ -134,7 +136,6 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		Longueur longueur6 = new Longueur("Grand Fromagier", 500, "7B");
 		longueur6.setVoie(voie3);
 		longueurRepository.save(longueur6);
-		
 
 		Longueur longueur7 = new Longueur("Chemin du col vert", 400, "1B");
 		longueur7.setVoie(voie4);
@@ -159,76 +160,72 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		Longueur longueur12 = new Longueur("Route du vieux phare", 1400, "2B");
 		longueur12.setVoie(voie6);
 		longueurRepository.save(longueur12);
-	
 
-		Topo topo1= new Topo("Saint-Pierre","cadre accueillant",true,new Date());
+		Topo topo1 = new Topo("Saint-Pierre", "cadre accueillant", true, new Date());
 		topo1.setUtilisateur(admin);
 		topoRepository.save(topo1);
-		
-		Topo topo2= new Topo("Croix Rouge","lieu ensoleillé",true,new Date());
+
+		Topo topo2 = new Topo("Croix Rouge", "lieu ensoleillé", true, new Date());
 		topo2.setUtilisateur(admin);
 		topoRepository.save(topo2);
-		
-		Topo topo3= new Topo("Maripasoula","plage vierge",true,new Date());
+
+		Topo topo3 = new Topo("Maripasoula", "plage vierge", true, new Date());
 		topo3.setUtilisateur(user);
 		topoRepository.save(topo3);
-		
-		Topo topo4= new Topo("Bois de Nèfles","ballade buccolique",true,new Date());
+
+		Topo topo4 = new Topo("Bois de Nèfles", "ballade buccolique", true, new Date());
 		topo4.setUtilisateur(user);
-		topoRepository.save(topo4);		
-		
-		Commentaire commentaire1= new Commentaire("commentaire1", new Date());
+		topoRepository.save(topo4);
+
+		Commentaire commentaire1 = new Commentaire("commentaire1", new Date());
 		commentaire1.setUtilisateur(user);
 		commentaire1.setSite(site1);
 		commentaireSpotRepository.save(commentaire1);
-	
-		
-		Commentaire commentaire5= new Commentaire("commentaire2", new Date());
+
+		Commentaire commentaire5 = new Commentaire("commentaire2", new Date());
 		commentaire5.setUtilisateur(admin);
 		commentaire5.setSite(site1);
 		commentaireSpotRepository.save(commentaire5);
-		
-		Commentaire commentaire2= new Commentaire("commentaire", new Date());
+
+		Commentaire commentaire2 = new Commentaire("commentaire", new Date());
 		commentaire2.setUtilisateur(user);
 		commentaire2.setSite(site2);
 		commentaireSpotRepository.save(commentaire2);
-		
-		Commentaire commentaire3= new Commentaire("commentaire", new Date());
+
+		Commentaire commentaire3 = new Commentaire("commentaire", new Date());
 		commentaire3.setUtilisateur(admin);
 		commentaire3.setSite(site3);
 		commentaireSpotRepository.save(commentaire3);
-		
-		Commentaire commentaire4= new Commentaire("commentaire", new Date());
+
+		Commentaire commentaire4 = new Commentaire("commentaire", new Date());
 		commentaire4.setUtilisateur(admin);
 		commentaire4.setSite(site4);
 		commentaireSpotRepository.save(commentaire4);
-		
-		ReservationTopo reservationTopo1= new ReservationTopo(new Date(),true,false,false);
+
+		ReservationTopo reservationTopo1 = new ReservationTopo(new Date(), true, false, false);
 		reservationTopo1.setTopo(topo3);
 		reservationTopo1.setDateemprunt(new Date());
 		reservationTopo1.setUtilisateur(admin);
 		reservationTopoRepository.save(reservationTopo1);
-		
-		
-		ReservationTopo reservationTopo2= new ReservationTopo(new Date(),true,false,false);
+
+		ReservationTopo reservationTopo2 = new ReservationTopo(new Date(), true, false, false);
 		reservationTopo2.setTopo(topo4);
 		reservationTopo2.setDateemprunt(new Date());
 		reservationTopo2.setUtilisateur(admin);
 		reservationTopoRepository.save(reservationTopo2);
-		
-		ReservationTopo reservationTopo3= new ReservationTopo(new Date(),false,true,false);
+
+		ReservationTopo reservationTopo3 = new ReservationTopo(new Date(), false, true, false);
 		reservationTopo3.setTopo(topo1);
 		reservationTopo3.setDateemprunt(new Date());
 		reservationTopo3.setUtilisateur(user);
 		reservationTopoRepository.save(reservationTopo3);
-		
-		ReservationTopo reservationTopo4= new ReservationTopo(new Date(),false,false,true);
+
+		ReservationTopo reservationTopo4 = new ReservationTopo(new Date(), false, false, true);
 		reservationTopo4.setTopo(topo2);
 		reservationTopo4.setDateemprunt(new Date());
 		reservationTopo4.setUtilisateur(user);
 		reservationTopoRepository.save(reservationTopo4);
-		
-		
+
 	}
 
 }

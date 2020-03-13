@@ -23,7 +23,14 @@ public class LongueurController {
 	public LongueurRepository longueurRepository;
 	@Autowired
 	private VoieRepository voieRepository;
-	
+
+	/**
+	 * supprimer une longueur par le biais de l id de la longueur
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/longueur/{id}/supprimer")
 	public String supprimerLongueur(Model model, @PathVariable(value = "id") Long id) {
 
@@ -31,6 +38,13 @@ public class LongueurController {
 		return "redirect:/site";
 	}
 
+	/**
+	 * formulaire de creation d une longueur lier à une voie et son id
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/voie/{id}/longueur/creer", method = RequestMethod.GET)
 	public String creerLongueur(Model model, @PathVariable(value = "id") Long id) {
 		Longueur longueur = new Longueur();
@@ -39,6 +53,15 @@ public class LongueurController {
 		return "/CreerLongueur";
 	}
 
+	/**
+	 * sauvegarder une longueur lier à une voie
+	 * 
+	 * @param model
+	 * @param longueur
+	 * @param id
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value = "/voie/{id}/longueur/save", method = RequestMethod.POST)
 	public String saveLongueur(Model model, @Valid Longueur longueur, @PathVariable(value = "id") Long id,
 			BindingResult bindingResult) {
@@ -48,7 +71,6 @@ public class LongueurController {
 		Voie voie = voieRepository.findById(id).get();
 		longueur.setVoie(voie);
 		longueurRepository.save(longueur);
-	
 
 		return "redirect:/site/" + voie.getSite().getId() + "/infoSite";
 	}
