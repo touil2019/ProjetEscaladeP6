@@ -55,6 +55,33 @@
 			</table>
 		</div>
 		</div>
+				<div class="container">
+			<h3>Mes topos</h3>
+			<a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo/creer}">Ajouter un Topo</a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>nom</th>
+						<th>description</th>
+						<th>disponible</th>
+						<th>date</th>
+						<th>supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					 <tr th:each="lto:${listTopo}">
+						 <td><a th:text="${lto.nom}"
+							th:href="@{/topo/{id}/infoTopo (id=${lto.id})}"></a></td>
+						<td th:text="${lto.description}"></td>
+						<td th:text="${lto.disponible}"></td>
+						<td th:text="${#dates.format(lto.date, 'dd-MM-yyyy HH:mm')}"></td>
+						<td><a class="btn btn-primary"
+							th:if="${utilisateur.id}==${lto.utilisateur.id}"
+							onclick="return confirm('Etes vous sûre?')"
+							th:href="@{/topo/{id}/supprimer (id=${lto.id})}">supprimer</a></td>
+					</tr>
+				</tbody>
+			</table>
 	</div>
 </body>
 </html>

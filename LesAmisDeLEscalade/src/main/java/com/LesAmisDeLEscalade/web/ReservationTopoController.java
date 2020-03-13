@@ -10,13 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.LesAmisDeLEscalade.dao.ReservationTopoRepository;
 import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
 import com.LesAmisDeLEscalade.entities.ReservationTopo;
-import com.LesAmisDeLEscalade.entities.Site;
 import com.LesAmisDeLEscalade.entities.Topo;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
 
@@ -82,6 +80,21 @@ public class ReservationTopoController {
 	  return "redirect:/reservation";
 	  
 	  }
-	 
+	  @GetMapping(value = "/reservation/{id}/refuser") 
+	  public String refuserrReservation(Model model, @PathVariable(value = "id") Long id) {
+	  
+	  Utilisateur utilisateur = (Utilisateur) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 	  
+	  ReservationTopo reservationTopo = reservationtopoRepository.findById(id).get();
+	  reservationTopo.setAcceptations(false);
+	  reservationtopoRepository.save(reservationTopo);
+	  
+	  Topo topo = topoRepository.findById(reservationTopo.getTopo().getId()).get();
+	  topo.setDisponible(true);
+	  topoRepository.save(topo);
+	  
+	  return "redirect:/reservation";
+	  
+	  }
 
 }

@@ -1,8 +1,12 @@
 package com.LesAmisDeLEscalade.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.LesAmisDeLEscalade.dao.TopoRepository;
 import com.LesAmisDeLEscalade.dao.UtilisateurRepository;
+import com.LesAmisDeLEscalade.entities.Topo;
 import com.LesAmisDeLEscalade.entities.Utilisateur;
 
 
@@ -19,6 +25,9 @@ public class UtilisateurController {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	private TopoRepository topoRepository;
 	
 	
 	@RequestMapping(value = "/utilisateur/creer", method = RequestMethod.GET)
@@ -42,7 +51,8 @@ public class UtilisateurController {
 
 		Utilisateur utilisateur= (Utilisateur)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.addAttribute("utilisateur",utilisateur);
-	
+		List<Topo> listTopo = topoRepository.listeDeTopoParUsers(utilisateur.getId());
+		model.addAttribute("listTopo", listTopo);
 	
 					
 		return  "/profil";
