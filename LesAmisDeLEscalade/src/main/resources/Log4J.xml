@@ -1,0 +1,29 @@
+<? xml version = " 1.0 " encoding = " UTF-8 " ?>
+< Configuration  status = " warn " >
+    < Propriétés >
+        < Property  name = " basePath " > C: \\ logs </ Property >
+    </ Propriétés >
+
+    < Appenders >
+        < RollingFile  name = " fileLogger "  fileName = " $ {basePath} /app-info.log "  filePattern = " $ {basePath} / app-info-% d {yyyy-MM-dd} .log " >
+            < PatternLayout >
+                < motif > [% - 5 niveaux]% j {aaaa-MM-jj HH: mm: ss.SSS} [% t]% C {1} -% msg% n </ motif >
+            </ PatternLayout >
+            < Politiques >
+                < TimeBasedTriggeringPolicy  interval = " 1 "  modulate = " true " />
+            </ Politiques >
+        </ RollingFile >
+
+        < Nom de la console  = " console " target = " SYSTEM_OUT " > 
+            < PatternLayout    pattern = " [% -5level]% d {aaaa-MM-jj HH: mm: ss.SSS} [% t]% c {1} -% msg% n " />
+        </ Console >
+    </ Appenders >
+    < Enregistreurs >
+        < Root  level = " debug "  additivity = " false " >
+            <! -
+            <appender-ref ref = "console" />
+            ->
+            < appender-ref  ref = " fileLogger "  level = " debug " />
+        </ Root >
+    </ Enregistreurs >
+</ Configuration >
