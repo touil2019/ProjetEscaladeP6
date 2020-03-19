@@ -27,6 +27,7 @@ public class Site implements Serializable {
 	private String ville;
 	private String secteur;
 	private String cotation;
+	
 	private boolean officiel;
 		
 		
