@@ -73,19 +73,19 @@ public class LesAmisDeLEscaladeApplication implements CommandLineRunner {
 		admin.setRoles(adminRole);
 		utilisateurRepository.save(admin);
 
-		Site site1 = new Site("le pic de dante", "Guyane", "Maripasoula");
+		Site site1 = new Site("le pic de dante", "Guyane", "Maripasoula","secteur1", "4C");
 		site1.setUtilisateur(user);
 		siteRepository.save(site1);
 
-		Site site2 = new Site("le pic vert", "Réunion", "Bois de Nèfles");
+		Site site2 = new Site("le pic vert", "Réunion", "Bois de Nèfles","secteur2", "6C");
 		site2.setUtilisateur(user);
 		siteRepository.save(site2);
 
-		Site site3 = new Site("le pic rouge", "Mayotte", "Mamoudzou");
+		Site site3 = new Site("le pic rouge", "Mayotte", "Mamoudzou","secteur3", "8C");
 		site3.setUtilisateur(admin);
 		siteRepository.save(site3);
 
-		Site site4 = new Site("Saint-Pierre", "Guadeloupe", "Pointe-à-Pitre");
+		Site site4 = new Site("Saint-Pierre", "Guadeloupe", "Pointe-à-Pitre","secteur1", "9C");
 		site4.setUtilisateur(admin);
 		siteRepository.save(site4);
 

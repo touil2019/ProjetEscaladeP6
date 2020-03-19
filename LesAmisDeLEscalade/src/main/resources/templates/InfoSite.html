@@ -39,6 +39,10 @@
 				<hr />
 				<label>Ville : </label><label th:text="${site.ville}"></label>
 				<hr />
+				<label>Secteur : </label><label th:text="${site.secteur}"></label>
+				<hr />
+				<label>Cotation : </label><label th:text="${site.cotation}"></label>
+				<hr />
 				<label>Officiel : </label><label th:text="${site.officiel}"></label>
 				<a class="btn btn-primary float-right"
 							sec:authorize="hasRole('ROLE_ADMIN')"

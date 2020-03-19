@@ -25,7 +25,8 @@ public class Site implements Serializable {
 	private String nom;
 	private String departement;
 	private String ville;
-
+	private String secteur;
+	private String cotation;
 	private boolean officiel;
 		
 		
@@ -47,10 +48,12 @@ public class Site implements Serializable {
 
 	}
 
-	public Site(String nom, String departement, String ville) {
+	public Site(String nom, String departement, String ville, String secteur, String cotation) {
 		this.nom = nom;
 		this.departement = departement;
 		this.ville = ville;
+		this.secteur = secteur;
+		this.cotation = cotation;
 	}
 
 	public Long getId() {
@@ -117,6 +120,22 @@ public class Site implements Serializable {
 
 	public void setOfficiel(boolean officiel) {
 		this.officiel = officiel;
+	}
+
+	public String getSecteur() {
+		return secteur;
+	}
+
+	public void setSecteur(String secteur) {
+		this.secteur = secteur;
+	}
+
+	public String getCotation() {
+		return cotation;
+	}
+
+	public void setCotation(String cotation) {
+		this.cotation = cotation;
 	}
 
 	

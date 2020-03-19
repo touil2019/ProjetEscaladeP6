@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="htpp://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -44,6 +45,8 @@
 						<th>nom</th>
 						<th>département</th>
 						<th>ville</th>
+						<th>secteur</th>
+						<th>cotation</th>
 						<th>Site Officiel</th>
 					</tr>
 				</thead>
@@ -55,6 +58,8 @@
 						</td>
 						<td th:text="${ls.departement}"></td>
 						<td th:text="${ls.ville}"></td>
+						<td th:text="${ls.secteur}"></td>
+						<td th:text="${ls.cotation}"></td>
 						<td >
 						<a th:text="${ls.officiel}" ></a>
 						</td>
